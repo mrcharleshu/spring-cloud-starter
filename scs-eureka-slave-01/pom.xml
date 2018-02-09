@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.charles</groupId>
-    <artifactId>scs-eureka</artifactId>
+    <artifactId>scs-eureka-slave-01</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>

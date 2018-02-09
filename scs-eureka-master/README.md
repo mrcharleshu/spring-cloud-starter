@@ -14,3 +14,7 @@ eureka:
     preferIpAddress: true
     instance-id: ${spring.cloud.client.ipAddress}:${server.port} # 将Instance ID设置成IP:端口的形式
 ```
+
+### Eureka集群的配置
+- http://blog.csdn.net/tianyaleixiaowu/article/details/78184793
+- https://www.cnblogs.com/wangjing666/p/6972742.html

@@ -16,12 +16,12 @@ eureka:
     #注册服务器的地址：服务提供者和服务消费者都要依赖这个地址
     serviceUrl:
       #defaultZone: http://localhost:${server:port}/eureka
-      defaultZone: http://localhost:8079/eureka
+      defaultZone: http://localhost:8078/eureka/,http://localhost:8079/eureka/,http://localhost:8080/eureka/
   instance:
-    metadataMap:
-      #表示eureka instance 标识，需要唯一，如果不配置，多个节点最终只会有一个生效
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: master
+    #metadataMap:
+      #表示eureka instance 标识，需要唯一，如果不配置，多个节点最终只会有一个生效
+      #instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 #日志打印控制
 logging:
   level:
