@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ConsumerFeignController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerFeignController.class);
+public class ConsumerRibbonController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerRibbonController.class);
     @Autowired
-    public FeignClientService feignClientService;
+    public RibbonService ribbonService;
 
-    @RequestMapping(value = "/addInFeign", method = RequestMethod.GET)
+    @RequestMapping(value = "/helloRibbon", method = RequestMethod.GET)
     public String sayHello() {
-        LOGGER.info("Request addInFeign......");
-        return feignClientService.sayHello("request_from_feign");
+        LOGGER.info("Request helloRibbon......");
+        return ribbonService.sayHello();
     }
 
 }

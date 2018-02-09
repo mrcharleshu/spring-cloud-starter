@@ -1,0 +1,17 @@
+server:
+  port: 9000
+management:
+  security:
+    enabled: false
+  context-path: /
+spring:
+  application:
+    name: scs-hystrix-monitor
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+turbine:
+  app-config: say-hello,scs-consumer-feign,scs-consumer-ribbon
+  cluster-name-expression: "'default'"
+  #instanceUrlSuffix: /say-hello/hystrix.stream

@@ -13,9 +13,9 @@ public class ConsumerFeignController {
     @Autowired
     public FeignClientService feignClientService;
 
-    @RequestMapping(value = "/addInFeign", method = RequestMethod.GET)
+    @RequestMapping(value = "/helloFeign", method = RequestMethod.GET)
     public String sayHello() {
-        LOGGER.info("Request addInFeign......");
+        LOGGER.info("Request helloFeign......");
         return feignClientService.sayHello("request_from_feign");
     }
 

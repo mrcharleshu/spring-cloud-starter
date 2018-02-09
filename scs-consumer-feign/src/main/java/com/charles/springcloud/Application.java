@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 @EnableFeignClients
 @EnableHystrix
+//@EnableAdminServer
 @ComponentScan("com.charles.springcloud")
 public class Application {
     @Bean//定义REST客户端，RestTemplate实例

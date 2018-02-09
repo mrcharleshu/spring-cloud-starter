@@ -1,0 +1,27 @@
+#注册服务的端口号
+server:
+  port: 8080
+#应用名称，集群名称需要一致 
+spring:
+  application:
+    name: eureka-server-01
+eureka:
+  client:
+    #是否需要注册到注册中心，因为该项目本身作为服务注册中心，所以为false
+    register-with-eureka: false
+    #是否需要从注册中心获取服务列表，原因同上，为false
+    fetch-registry: false
+    #注册服务器的地址：服务提供者和服务消费者都要依赖这个地址
+    serviceUrl:
+      defaultZone: http://localhost:${server:port}/eureka
+  instance:
+    metadataMap:
+      #表示eureka instance 标识，需要唯一，如果不配置，多个节点最终只会有一个生效
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#日志打印控制
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

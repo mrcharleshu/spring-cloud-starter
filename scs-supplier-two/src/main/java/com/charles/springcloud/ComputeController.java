@@ -9,19 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by wang on 17-3-12.
- */
 @RestController
 public class ComputeController {
-    private final Logger logger = Logger.getLogger(getClass());
+    private static final Logger LOGGER = Logger.getLogger(ComputeController.class);
     @Autowired
-    private DiscoveryClient client;
-    @RequestMapping(value = "/sayHello" ,method = RequestMethod.GET)
+    private DiscoveryClient discoveryClient;
+
+    @RequestMapping(value = "/sayHello", method = RequestMethod.GET)
     public String sayHello(@RequestParam String name) {
-        ServiceInstance instance = client.getLocalServiceInstance();
-        String r = "hello,"+name;
-        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        String r = "hello," + name;
+        LOGGER.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
         return r;
     }
 }
