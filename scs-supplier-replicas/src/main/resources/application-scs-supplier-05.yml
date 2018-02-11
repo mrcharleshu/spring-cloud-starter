@@ -1,0 +1,11 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: say-hello
+  profiles:
+    active: scs-supplier-05
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://master:8081/eureka/

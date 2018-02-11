@@ -1,6 +1,6 @@
 #注册服务的端口号
 server:
-  port: 8080
+  port: 8081
 #应用名称，集群名称需要一致 
 spring:
   application:
@@ -17,7 +17,7 @@ eureka:
     serviceUrl:
       #defaultZone: http://localhost:${server:port}/eureka
       #defaultZone: http://localhost:8078/eureka/,http://localhost:8079/eureka/,http://localhost:8080/eureka/
-      defaultZone: http://master:8080/eureka/,http://slave-01:8079/eureka/,http://slave-02:8078/eureka/
+      defaultZone: http://master:8081/eureka/,http://slave-01:8082/eureka/,http://slave-02:8083/eureka/
   instance:
     hostname: master
     #metadataMap:

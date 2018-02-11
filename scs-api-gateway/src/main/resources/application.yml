@@ -1,0 +1,52 @@
+server:
+  port: 8080
+management:
+  security:
+    enabled: false
+  context-path: /
+spring:
+  application:
+    name: scs-api-gateway
+logging:
+  path: logs
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr(%logger{15}){cyan} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{15} - %msg%n'
+  level:
+    org:
+      springframework:
+        boot: WARN
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://master:8081/eureka/
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 30000
+  routes:
+    ribbon:
+      url: http://localhost:9001
+      path: /api/ribbon/**
+      stripPrefix: false
+    feign:
+      url: http://localhost:9002
+      path: /api/feign/**
+      stripPrefix: false
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  eureka:
+    enabled: false
+  ReadTimeout: 30000
+  ConnectTimeout: 10000

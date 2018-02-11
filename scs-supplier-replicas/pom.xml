@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.charles</groupId>
-    <artifactId>scs-supplier-two</artifactId>
+    <artifactId>scs-supplier-replicas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
