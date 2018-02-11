@@ -16,13 +16,6 @@ eureka:
     #注册服务器的地址：服务提供者和服务消费者都要依赖这个地址
     serviceUrl:
       #defaultZone: http://localhost:${server:port}/eureka
-      defaultZone: http://localhost:8078/eureka/,http://localhost:8079/eureka/,http://localhost:8080/eureka/
+      defaultZone: http://master:8080/eureka/,http://slave-01:8079/eureka/,http://slave-02:8078/eureka/
   instance:
     hostname: slave-02
-#日志打印控制
-logging:
-  level:
-    com:
-      netflix:
-        eureka: OFF
-        discovery: OFF
