@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9004
 management:
   security:
     enabled: false
@@ -8,7 +8,7 @@ spring:
   application:
     name: scs-consumer-feign
   profiles:
-    active: master
+    active: slave-02
 eureka:
   client:
     serviceUrl:

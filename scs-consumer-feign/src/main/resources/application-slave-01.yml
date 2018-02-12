@@ -8,7 +8,7 @@ spring:
   application:
     name: scs-consumer-feign
   profiles:
-    active: slave
+    active: slave-01
 eureka:
   client:
     serviceUrl:
