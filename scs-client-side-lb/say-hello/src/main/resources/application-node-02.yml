@@ -1,0 +1,7 @@
+server:
+  port: 9092
+spring:
+  application:
+    name: say-hello
+  profiles:
+    active: node-02

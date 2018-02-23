@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: say-hello
+  profiles:
+    active: three
+
+server:
+  port: 9999

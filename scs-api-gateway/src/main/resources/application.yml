@@ -29,6 +29,7 @@ zuul:
       url: http://localhost:9001
       path: /api/ribbon/**
       stripPrefix: false
+      serviceId: scs-consumer-ribbon
     feign:
       path: /api/feign/**
       stripPrefix: false
@@ -45,14 +46,15 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000
-ribbon:
-  eureka:
-    enabled: false
-  ReadTimeout: 30000
-  ConnectTimeout: 10000
+#ribbon:
+#  eureka:
+#    enabled: false
 
 scs-consumer-feign:
   ribbon:
-    listOfServers: http://localhost:9002,http://localhost:9003
+    eureka:
+      enabled: false
+    listOfServers: http://localhost:9010,http://localhost:9011,http://localhost:9012
+    ServerListRefreshInterval: 15000
     ReadTimeout: 30000
     ConnectTimeout: 10000

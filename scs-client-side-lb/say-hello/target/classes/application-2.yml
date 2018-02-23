@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: say-hello
+  profiles:
+    active: two
+
+server:
+  port: 9092

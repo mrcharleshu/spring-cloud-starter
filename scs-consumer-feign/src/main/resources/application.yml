@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9010
 management:
   security:
     enabled: false
@@ -34,5 +34,5 @@ hystrix:
         timeout:
           enabled: true
 ribbon:
-  ConnectTimeout: 15000
-  ReadTimeout: 15000
+  ConnectTimeout: 10000
+  ReadTimeout: 30000

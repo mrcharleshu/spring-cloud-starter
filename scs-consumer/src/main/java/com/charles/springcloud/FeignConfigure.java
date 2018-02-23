@@ -13,8 +13,8 @@
 // * </pre>
 // * 除了可以用本Configuration的方法设置timeout之外还可以在配置文件中加上以下
 // * <pre>
-// * ribbon.ConnectTimeout=15000
-// * ribbon.ReadTimeout=15000
+// * ribbon.ConnectTimeout=10000
+// * ribbon.ReadTimeout=30000
 // * </pre>
 // */
 //@Configuration
