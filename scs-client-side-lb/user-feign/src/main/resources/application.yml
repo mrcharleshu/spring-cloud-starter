@@ -1,0 +1,27 @@
+server:
+  port: 8888
+  connection-timeout: 30000
+  tomcat:
+    max-connections: 8192
+    max-threads: 512
+    accept-count: 512
+    accesslog:
+      enabled: true
+    basedir: target/tomcat
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: user
+feign:
+  hystrix:
+    enabled: true
+say-hello:
+  ribbon:
+    eureka:
+      enabled: false
+    client:
+      enabled: true
+    listOfServers: localhost:8090,localhost:9092,localhost:9999
+    ServerListRefreshInterval: 15000
+    ConnectTimeout: 30000
+    ReadTimeout: 30000

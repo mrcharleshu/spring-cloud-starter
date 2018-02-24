@@ -8,6 +8,7 @@ server:
     accesslog:
       enabled: true
     basedir: target/tomcat
+    uri-encoding: UTF-8
 spring:
   application:
     name: user

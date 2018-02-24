@@ -6,17 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class RibbonService {
+public class RibbonClientService {
     @Autowired
     private RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "errServiceFallback")
-    public String sayHello() {
-        String url = "http://SAY-HELLO/sayHello?name=request_from_ribbo";
-        return restTemplate.getForEntity(url, String.class).getBody();
+    public String sayHello(final String name) {
+        String url = "http://say-hello/greeting?name=" + name;
+        return restTemplate.getForObject(url, String.class);
     }
 
-    public String errServiceFallback() {
-        return "errorWithRibbon";
+    public String errServiceFallback(final String name, final Throwable e) {
+        return String.format("Error with ribbon, request params[%s], cause: ", name, e.getMessage());
     }
 }

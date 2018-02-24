@@ -15,7 +15,8 @@ deploy/temp*
 
 ### Subprojects ###
 say-hello/target/
-user/target/
+user-ribbon/target/
+user-feign/target/
 
 ### Mac ###
 .DS_Store

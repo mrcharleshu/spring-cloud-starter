@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerRibbonController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerRibbonController.class);
     @Autowired
-    public RibbonService ribbonService;
+    public RibbonClientService ribbonClientService;
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String sayHello() {
         LOGGER.info("Request helloRibbon......");
-        return ribbonService.sayHello();
+        return ribbonClientService.sayHello();
     }
 
 }
