@@ -42,7 +42,7 @@ public class SayHelloApplication {
 
     @GetMapping(value = "/")
     public String home() {
-        LOGGER.info("Access /");
+        LOGGER.info("Status: Alive");
         return "Hi!";
     }
 

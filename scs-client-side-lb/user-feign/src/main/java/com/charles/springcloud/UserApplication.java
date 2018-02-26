@@ -24,4 +24,3 @@ public class UserApplication {
         return feignClientService.sayHello(name);
     }
 }
-

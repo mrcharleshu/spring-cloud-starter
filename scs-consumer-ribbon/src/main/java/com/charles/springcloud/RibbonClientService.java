@@ -12,7 +12,7 @@ public class RibbonClientService {
 
     @HystrixCommand(fallbackMethod = "errServiceFallback")
     public String sayHello() {
-        String url = "http://SAY-HELLO/sayHello?name=request_from_ribbo";
+        String url = "http://SAY-HELLO/sayHello?name=request_from_ribbon";
         return restTemplate.getForEntity(url, String.class).getBody();
     }
 

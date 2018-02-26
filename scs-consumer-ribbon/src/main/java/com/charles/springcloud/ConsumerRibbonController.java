@@ -19,5 +19,4 @@ public class ConsumerRibbonController {
         LOGGER.info("Request helloRibbon......");
         return ribbonClientService.sayHello();
     }
-
 }
