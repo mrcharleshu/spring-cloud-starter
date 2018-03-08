@@ -1,5 +1,14 @@
 server:
   port: 8080
+endpoints:
+  restart:
+    enabled: true
+  health:
+    sensitive: false
+  routes:
+    sensitive: false
+  trace:
+    sensitive: false
 management:
   security:
     enabled: false
@@ -26,7 +35,6 @@ zuul:
     socket-timeout-millis: 30000
   routes:
     ribbon:
-      url: http://localhost:9001
       path: /api/ribbon/**
       stripPrefix: false
       serviceId: scs-consumer-ribbon
@@ -50,11 +58,11 @@ hystrix:
 #  eureka:
 #    enabled: false
 
-scs-consumer-feign:
-  ribbon:
-    eureka:
-      enabled: false
-    listOfServers: http://localhost:9010,http://localhost:9011,http://localhost:9012
-    ServerListRefreshInterval: 15000
-    ReadTimeout: 30000
-    ConnectTimeout: 10000
+#scs-consumer-ribbon:
+#  ribbon:
+#    eureka:
+#      enabled: false
+#    listOfServers: http://localhost:9010,http://localhost:9011,http://localhost:9012
+#    ServerListRefreshInterval: 15000
+#    ReadTimeout: 30000
+#    ConnectTimeout: 10000

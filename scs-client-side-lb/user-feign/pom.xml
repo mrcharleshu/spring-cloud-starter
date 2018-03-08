@@ -43,8 +43,8 @@
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Edgware.SR2</version>
+                <artifactId>spring-cloud-netflix</artifactId>
+                <version>1.4.3.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

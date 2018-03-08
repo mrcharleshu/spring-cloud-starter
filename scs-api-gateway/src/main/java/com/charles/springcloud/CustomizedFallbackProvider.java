@@ -52,10 +52,13 @@ public abstract class CustomizedFallbackProvider implements FallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse(final Throwable cause) {
-        if (cause != null && cause.getCause() != null) {
-            String reason = cause.getCause().getMessage();
-            LOGGER.info("Exception {}", reason);
+    public ClientHttpResponse fallbackResponse(final Throwable throwable) {
+        Throwable cause = throwable.getCause();
+        while (cause != null && cause.getCause() != null) {
+            cause = throwable.getCause();
+        }
+        if (cause != null) {
+            LOGGER.error("Exception {}", cause.getMessage());
         }
         return fallbackResponse();
     }
