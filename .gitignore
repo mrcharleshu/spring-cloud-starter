@@ -4,6 +4,7 @@ build/
 *.log
 *.class
 out/
+target/
 logs/
 deploy/temp*
 

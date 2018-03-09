@@ -25,3 +25,13 @@
 127.0.0.1	localhost	slave-01
 127.0.0.1	localhost	slave-02
 ```
+
+### 各个服务端口分配
+|服务|端口范围|
+|:--------|:--------|
+|api-gateway|8080|
+|eureka-cluster|8081~8083|
+|scs-supplier-db|9020~9022|
+|scs-supplier-simple|8091~8096|
+|scs-consumer-ribbon|9001~9003|
+|scs-consumer-feign|9010~9012|

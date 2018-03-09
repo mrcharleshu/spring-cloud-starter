@@ -8,13 +8,10 @@
         <groupId>com.charles.springcloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-api-gateway</artifactId>
-    <!--<packaging>jar</packaging>-->
-    <!--<name>scs-api-gateway</name>-->
-    <!--<description>Spring Cloud Starter API Gateway</description>-->
+    <artifactId>scs-supplier-01</artifactId>
 
     <dependencies>
         <!--<dependency>-->
@@ -26,8 +23,25 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lazyluke</groupId>
+            <artifactId>log4jdbc-remix</artifactId>
+            <version>${log4jdbcRemixVersion}</version>
         </dependency>
     </dependencies>
 </project>

@@ -55,7 +55,7 @@ public abstract class CustomizedFallbackProvider implements FallbackProvider {
     public ClientHttpResponse fallbackResponse(final Throwable throwable) {
         Throwable cause = throwable.getCause();
         while (cause != null && cause.getCause() != null) {
-            cause = throwable.getCause();
+            cause = cause.getCause();
         }
         if (cause != null) {
             LOGGER.error("Exception {}", cause.getMessage());
