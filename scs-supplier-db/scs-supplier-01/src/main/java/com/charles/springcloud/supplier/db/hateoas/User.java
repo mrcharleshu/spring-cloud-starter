@@ -1,4 +1,4 @@
-package com.charles.springcloud;
+package com.charles.springcloud.supplier.db.hateoas;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

@@ -1,4 +1,4 @@
-package com.charles.springcloud;
+package com.charles.springcloud.supplier.db.hateoas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +14,10 @@ import java.util.TimeZone;
 @EnableDiscoveryClient
 @EnableTransactionManagement
 @EnableJpaAuditing
-@EntityScan(basePackageClasses = {Application.class, Jsr310JpaConverters.class})
-public class Application {
+@EntityScan(basePackageClasses = {HateoasApplication.class, Jsr310JpaConverters.class})
+public class HateoasApplication {
     public static void main(String[] args) {
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(HateoasApplication.class, args);
     }
 }
