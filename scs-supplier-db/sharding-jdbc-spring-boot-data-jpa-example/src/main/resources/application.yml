@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: sharding-jdbc-spring-boot-data-jpa
+  profiles:
+    active: sharding
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: false
+#spring.profiles.active=sharding-db
+#spring.profiles.active=sharding-tbl
+#spring.profiles.active=masterslave
+#spring.profiles.active=sharding-masterslave
+logging:
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr(%logger{15}){cyan} - %msg%n'
+  level:
+    jdbc:
+      sqltiming: INFO
+      sqlonly: WARN
+      audit: WARN
+      resultset: WARN
+      resultsettable: WARN
+      connection: WARN
+    org:
+      springframework:
+        boot: WARN
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://master:8081/eureka/
