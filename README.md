@@ -31,7 +31,7 @@
 |:--------|:--------|
 |api-gateway|8080|
 |eureka-cluster|8081~8083|
-|scs-supplier-db|9020~9022|
+|scs-supplier-db|9020~9023|
 |scs-supplier-simple|8091~8096|
 |scs-consumer-ribbon|9001~9003|
 |scs-consumer-feign|9010~9012|

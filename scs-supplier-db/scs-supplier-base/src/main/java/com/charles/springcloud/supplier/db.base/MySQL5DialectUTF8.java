@@ -1,4 +1,4 @@
-package com.charles.springcloud.supplier.db.hateoas;
+package com.charles.springcloud.supplier.db.base;
 
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 

@@ -11,10 +11,10 @@ spring:
       hibernate:
         hbm2ddl:
           auto: update
-        dialect: com.charles.springcloud.supplier.db.hateoas.MySQL5DialectUTF8
+        dialect: com.charles.springcloud.supplier.db.base.MySQL5DialectUTF8
     show-sql: false
   application:
-    name: db-query-01
+    name: db-query-hateoas
 logging:
   pattern:
     console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr(%logger{15}){cyan} - %msg%n'

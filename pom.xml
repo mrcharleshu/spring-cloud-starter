@@ -12,14 +12,21 @@
 
     <groupId>com.charles.springcloud</groupId>
     <artifactId>spring-cloud-starter-parent</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>spring-cloud-starter</name>
     <description>spring cloud starter practice</description>
 
     <modules>
-        <module>../scs-api-gateway</module>
+        <module>scs-eureka-master</module>
+        <module>scs-eureka-slave-01</module>
+        <module>scs-eureka-slave-02</module>
+        <module>scs-supplier-simple</module>
+        <module>scs-supplier-db</module>
+        <module>scs-consumer-ribbon</module>
+        <module>scs-consumer-feign</module>
+        <module>scs-api-gateway</module>
     </modules>
 
     <properties>
@@ -109,10 +116,10 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>

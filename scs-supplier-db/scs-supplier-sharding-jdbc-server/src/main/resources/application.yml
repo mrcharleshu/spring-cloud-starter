@@ -13,7 +13,7 @@ spring:
       hibernate:
         hbm2ddl:
           auto: none
-        dialect: com.charles.springcloud.supplier.db.sharding.server.MySQL5DialectUTF8
+        dialect: com.charles.springcloud.supplier.db.base.MySQL5DialectUTF8
     show-sql: false
 logging:
   pattern:

@@ -4,14 +4,16 @@
     <parent>
         <groupId>com.charles.springcloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>1.0.0</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>sharding-jdbc-spring-boot-parent</artifactId>
+    <artifactId>supplier-db-parent</artifactId>
     <packaging>pom</packaging>
 
     <modules>
+        <module>scs-supplier-base</module>
+        <module>scs-supplier-hateoas</module>
         <module>scs-supplier-sharding-jdbc-jpa</module>
         <module>scs-supplier-sharding-jdbc-mybatis</module>
         <module>scs-supplier-sharding-jdbc-server</module>

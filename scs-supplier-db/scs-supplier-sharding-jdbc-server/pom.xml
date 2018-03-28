@@ -3,14 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.charles.springcloud</groupId>
-        <artifactId>sharding-jdbc-spring-boot-parent</artifactId>
-        <version>1.0.0</version>
+        <artifactId>supplier-db-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>db-query-sharding-jdbc-server</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.charles.springcloud</groupId>
+            <artifactId>scs-supplier-base</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
