@@ -1,22 +1,10 @@
 server:
-  port: 9021
+  port: 9022
 spring:
-  application:
-    name: db-query-sharding-jdbc-mybatis
   profiles:
     active: sharding
-  datasource:
-    driver-class-name: net.sf.log4jdbc.DriverSpy
-    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: 123
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: none
-        dialect: MySQL5DialectUTF8
-    show-sql: false
+mybatis:
+  config-location: classpath:META-INF/mybatis-config.xml
 logging:
   pattern:
     console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr(%logger{15}){cyan} - %msg%n'
