@@ -34,7 +34,6 @@
         <guava.version>22.0</guava.version>
         <log4jdbcRemixVersion>0.2.7</log4jdbcRemixVersion>
         <de.codecentric.version>1.5.7</de.codecentric.version>
-        <sharding-jdbc.version>2.0.3</sharding-jdbc.version>
     </properties>
 
     <repositories>

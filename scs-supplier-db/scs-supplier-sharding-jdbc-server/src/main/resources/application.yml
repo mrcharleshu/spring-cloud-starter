@@ -1,10 +1,13 @@
 server:
-  port: 9021
+  port: 9023
 spring:
   application:
-    name: db-query-sharding-jdbc-jpa
-  profiles:
-    active: sharding
+    name: db-query-sharding-jdbc-server
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3307/sharding_db?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password:
   jpa:
     properties:
       hibernate:
@@ -30,7 +33,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://master:8081/eureka/
-#spring.profiles.active=sharding-db
-#spring.profiles.active=sharding-tbl
-#spring.profiles.active=masterslave
-#spring.profiles.active=sharding-masterslave

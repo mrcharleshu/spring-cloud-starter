@@ -1,4 +1,4 @@
-package com.charles.springcloud.supplier.db.sharding.jpa.entity;
+package com.charles.springcloud.supplier.db.sharding.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,22 +8,30 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "t_order")
-public class Order implements Serializable {
+@Table(name = "t_order_item")
+public class OrderItem implements Serializable {
     @Id
     @GeneratedValue
+    @Column(name = "order_item_id")
+    private Long orderItemId;
     @Column(name = "order_id")
     private Long orderId;
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "status")
-    private String status;
+
+    public Long getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(final long orderItemId) {
+        this.orderItemId = orderItemId;
+    }
 
     public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(final Long orderId) {
+    public void setOrderId(final long orderId) {
         this.orderId = orderId;
     }
 
@@ -35,16 +43,8 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(final String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
-        return String.format("order_id: %s, user_id: %s, status: %s", orderId, userId, status);
+        return String.format("order_item_id: %s, order_id: %s, user_id: %s", orderItemId, orderId, userId);
     }
 }

@@ -1,6 +1,8 @@
 server:
   port: 9022
 spring:
+  application:
+    name: db-query-sharding-jdbc-mybatis
   profiles:
     active: sharding
 mybatis:

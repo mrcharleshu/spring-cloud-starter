@@ -1,26 +1,27 @@
-package com.charles.springcloud.supplier.db.sharding.jpa.service;
+package com.charles.springcloud.supplier.db.sharding.server;
 
-import com.charles.springcloud.supplier.db.sharding.jpa.entity.Order;
-import com.charles.springcloud.supplier.db.sharding.jpa.entity.OrderItem;
-import com.charles.springcloud.supplier.db.sharding.jpa.repository.OrderItemRepository;
-import com.charles.springcloud.supplier.db.sharding.jpa.repository.OrderRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import com.charles.springcloud.supplier.db.sharding.server.entity.Order;
+import com.charles.springcloud.supplier.db.sharding.server.entity.OrderItem;
+import com.charles.springcloud.supplier.db.sharding.server.repository.OrderItemRepository;
+import com.charles.springcloud.supplier.db.sharding.server.repository.OrderRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class OrderService {
-    private static final Integer DEFAULT_USER_ID = 51;
+@Component
+public class DataInitializer implements CommandLineRunner, Ordered {
+    private static final Integer DEFAULT_USER_ID = 50;
     @Resource
     private OrderRepository orderRepository;
     @Resource
     private OrderItemRepository orderItemRepository;
 
-    public void demo() {
+    @Override
+    public void run(final String... strings) throws Exception {
         List<Long> orderIds = new ArrayList<>(10);
         List<Long> orderItemIds = new ArrayList<>(10);
         System.out.println("1.Insert--------------");
@@ -49,15 +50,8 @@ public class OrderService {
 //        System.out.println(orderItemRepository.findAll());
     }
 
-    public List<Order> findAll() {
-        return orderRepository.findAll();
-    }
-
-    public Page<Order> findPage(final Pageable pageable) {
-        return orderRepository.findAll(pageable);
-    }
-
-    public Order findOne(final Integer userId, final Long orderId) {
-        return orderRepository.findByUserIdAndOrderId(userId, orderId);
+    @Override
+    public int getOrder() {
+        return Ordered.LOWEST_PRECEDENCE;
     }
 }

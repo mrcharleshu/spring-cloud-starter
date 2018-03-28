@@ -1,4 +1,4 @@
-package com.charles.springcloud.supplier.db.sharding.jpa;
+package com.charles.springcloud.supplier.db.sharding.server;
 
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 

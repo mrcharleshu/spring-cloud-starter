@@ -1,4 +1,4 @@
-package com.charles.springcloud.supplier.db.sharding.jpa.entity;
+package com.charles.springcloud.supplier.db.sharding.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

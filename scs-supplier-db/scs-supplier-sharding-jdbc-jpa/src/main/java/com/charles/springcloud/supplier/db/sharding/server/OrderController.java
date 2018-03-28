@@ -1,7 +1,7 @@
-package com.charles.springcloud.supplier.db.sharding.jpa;
+package com.charles.springcloud.supplier.db.sharding.server;
 
-import com.charles.springcloud.supplier.db.sharding.jpa.entity.Order;
-import com.charles.springcloud.supplier.db.sharding.jpa.service.OrderService;
+import com.charles.springcloud.supplier.db.sharding.server.entity.Order;
+import com.charles.springcloud.supplier.db.sharding.server.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
