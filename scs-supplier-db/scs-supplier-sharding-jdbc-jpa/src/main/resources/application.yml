@@ -4,12 +4,12 @@ spring:
   application:
     name: db-query-sharding-jdbc-jpa
   profiles:
-    active: sharding
+    active: sharding-masterslave
   jpa:
     properties:
       hibernate:
         hbm2ddl:
-          auto: none
+          auto: update
         dialect: com.charles.springcloud.supplier.db.base.MySQL5DialectUTF8
     show-sql: false
 logging:
@@ -30,6 +30,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://master:8081/eureka/
+#spring.profiles.active=sharding
 #spring.profiles.active=sharding-db
 #spring.profiles.active=sharding-tbl
 #spring.profiles.active=masterslave
