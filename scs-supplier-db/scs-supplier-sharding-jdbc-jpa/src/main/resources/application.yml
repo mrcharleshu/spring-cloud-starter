@@ -9,7 +9,7 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          auto: update
+          auto: none
         dialect: com.charles.springcloud.supplier.db.base.MySQL5DialectUTF8
     show-sql: false
 logging:
