@@ -7,6 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.10.RELEASE</version>
+        <!--<version>2.0.0.RELEASE</version>-->
         <relativePath/>
     </parent>
 
@@ -50,6 +51,11 @@
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
         <repository>
+            <id>spring.lib.releases</id>
+            <name>Spring Release</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+        <repository>
             <id>spring.milestone</id>
             <name>Spring Milestone Repository</name>
             <url>https://repo.spring.io/milestone</url>
@@ -79,8 +85,8 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix</artifactId>
-                <!--<version>2.0.0.M2</version>-->
-                <version>1.4.3.RELEASE</version>
+                <!--<version>2.0.0.M1</version>-->
+                <version>1.4.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -117,8 +123,8 @@
                 </configuration>
             </plugin>
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
         </plugins>
     </build>
