@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.13.RELEASE</version>
+        <version>1.5.20.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -19,9 +19,7 @@
     <description>spring cloud starter practice</description>
 
     <modules>
-        <module>scs-eureka-master</module>
-        <module>scs-eureka-slave-01</module>
-        <module>scs-eureka-slave-02</module>
+        <module>scs-eureka</module>
         <module>scs-supplier-simple</module>
         <module>scs-supplier-db</module>
         <module>scs-consumer-ribbon</module>
@@ -103,10 +101,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
     </dependencies>
 

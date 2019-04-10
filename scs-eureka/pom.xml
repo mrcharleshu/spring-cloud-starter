@@ -11,19 +11,12 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-api-gateway</artifactId>
-    <packaging>jar</packaging>
-    <name>scs-api-gateway</name>
-    <description>Spring Cloud Starter API Gateway</description>
+    <artifactId>scs-eureka</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
         </dependency>
     </dependencies>
 </project>
