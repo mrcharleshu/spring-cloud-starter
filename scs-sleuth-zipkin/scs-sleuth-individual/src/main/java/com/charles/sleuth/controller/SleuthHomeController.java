@@ -25,17 +25,20 @@ public class SleuthHomeController {
         this.restTemplate = restTemplate;
     }
 
+    private int sleep() throws InterruptedException {
+        int sleep = random.nextInt(100);
+        TimeUnit.MILLISECONDS.sleep(sleep);
+        return sleep;
+    }
+
     /**
      * service-1
      */
     @RequestMapping("start")
     public String start() throws InterruptedException {
         LOGGER.info("start");
-        int sleep = random.nextInt(100);
-        TimeUnit.MILLISECONDS.sleep(sleep);
+        int sleep = sleep();
         LOGGER.info("执行调用");
-        // String url = "http://SAY-HELLO/sayHello?name=request_from_ribbon";
-        // return restTemplate.getForEntity(url, String.class).getBody();
         String response = restTemplate.getForEntity(SERVICE_2_API_URL, String.class).getBody();
         LOGGER.info("调用结束");
         return " [service1 sleep " + sleep + " ms]" + response;
@@ -48,8 +51,7 @@ public class SleuthHomeController {
     public String foo() throws InterruptedException {
         LOGGER.info("foo");
         LOGGER.info("执行调用");
-        int sleep = random.nextInt(100);
-        TimeUnit.MILLISECONDS.sleep(sleep);
+        int sleep = sleep();
         String response3 = restTemplate.getForEntity(SERVICE_3_API_URL, String.class).getBody();
         String response4 = restTemplate.getForEntity(SERVICE_4_API_URL, String.class).getBody();
         LOGGER.info("调用结束");
@@ -63,8 +65,7 @@ public class SleuthHomeController {
     public String bar() throws InterruptedException {
         LOGGER.info("bar");
         LOGGER.info("执行调用");
-        int sleep = random.nextInt(100);
-        TimeUnit.MILLISECONDS.sleep(sleep);
+        int sleep = sleep();
         LOGGER.info("调用结束");
         return " [service3 sleep " + sleep + " ms]";
     }
@@ -76,8 +77,7 @@ public class SleuthHomeController {
     public String tar() throws InterruptedException {
         LOGGER.info("tar");
         LOGGER.info("执行调用");
-        int sleep = random.nextInt(100);
-        TimeUnit.MILLISECONDS.sleep(sleep);
+        int sleep = sleep();
         LOGGER.info("调用结束");
         return " [service4 sleep " + sleep + " ms]";
     }
