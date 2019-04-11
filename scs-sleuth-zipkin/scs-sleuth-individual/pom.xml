@@ -6,21 +6,15 @@
 
     <parent>
         <groupId>com.charles.springcloud</groupId>
-        <artifactId>spring-cloud-starter-parent</artifactId>
+        <artifactId>scs-sleuth-zipkin-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-api-gateway</artifactId>
+    <artifactId>scs-sleuth-individual</artifactId>
     <packaging>jar</packaging>
-    <name>scs-api-gateway</name>
-    <description>Spring Cloud Starter API Gateway</description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -39,5 +33,40 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>service-1</id>
+            <properties>
+                <spring.profiles.active>service-1</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-2</id>
+            <properties>
+                <spring.profiles.active>service-2</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-3</id>
+            <properties>
+                <spring.profiles.active>service-3</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-4</id>
+            <properties>
+                <spring.profiles.active>service-4</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>

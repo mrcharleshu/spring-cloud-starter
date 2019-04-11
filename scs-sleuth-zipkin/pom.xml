@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>scs-sleuth-individual</module>
         <module>scs-zipkin-individual</module>
     </modules>
 
@@ -22,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

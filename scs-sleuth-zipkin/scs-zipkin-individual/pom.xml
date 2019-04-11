@@ -47,47 +47,42 @@
             <artifactId>brave-web-servlet-filter</artifactId>
             <version>${zipkin.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-okhttp</artifactId>
             <version>${zipkin.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-api</artifactId>-->
-        <!--<version>1.7.13</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
+            <version>${http-client.version}</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>bintray</name>
-            <url>http://jcenter.bintray.com</url>
-        </repository>
-    </repositories>
-
-
-    <!-- Package as an executable jar -->
-    <build>
-        <finalName>zipkin</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
+    
+    <profiles>
+        <profile>
+            <id>service-1</id>
+            <properties>
+                <spring.profiles.active>service-1</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-2</id>
+            <properties>
+                <spring.profiles.active>service-2</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-3</id>
+            <properties>
+                <spring.profiles.active>service-3</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-4</id>
+            <properties>
+                <spring.profiles.active>service-4</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>

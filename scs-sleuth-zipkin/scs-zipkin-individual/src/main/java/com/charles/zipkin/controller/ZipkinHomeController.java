@@ -15,31 +15,35 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/")
-public class HomeController {
+public class ZipkinHomeController {
     // private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZipkinHomeController.class);
+    private static final String SERVICE_2_API_URL = "http://localhost:9092/foo";
+    private static final String SERVICE_3_API_URL = "http://localhost:9093/bar";
+    private static final String SERVICE_4_API_URL = "http://localhost:9094/tar";
     private Random random = new Random();
+    private final OkHttpClient client;
+
     @Autowired
-    private OkHttpClient client;
+    public ZipkinHomeController(OkHttpClient client) {
+        this.client = client;
+    }
 
     /**
-     * service-1: 8080
-     * @return
-     * @throws InterruptedException
-     * @throws IOException
+     * service-1
      */
     @RequestMapping("start")
     public String start() throws InterruptedException, IOException {
         LOGGER.info("start");
         int sleep = random.nextInt(100);
         TimeUnit.MILLISECONDS.sleep(sleep);
-        Request request = new Request.Builder().url("http://localhost:9090/foo").get().build();
+        Request request = new Request.Builder().url(SERVICE_2_API_URL).get().build();
         Response response = client.newCall(request).execute();
         return " [service1 sleep " + sleep + " ms]" + response.body().toString();
     }
 
     /**
-     * service-2: 9090
+     * service-2
      * @return
      * @throws InterruptedException
      * @throws IOException
@@ -49,17 +53,17 @@ public class HomeController {
         LOGGER.info("foo");
         int sleep = random.nextInt(100);
         TimeUnit.MILLISECONDS.sleep(sleep);
-        Request request = new Request.Builder().url("http://localhost:9091/bar").get().build();  //service3
+        Request request = new Request.Builder().url(SERVICE_3_API_URL).get().build();  //service3
         Response response = client.newCall(request).execute();
         String result = response.body().string();
-        request = new Request.Builder().url("http://localhost:9092/tar").get().build();  //service4
+        request = new Request.Builder().url(SERVICE_4_API_URL).get().build();  //service4
         response = client.newCall(request).execute();
         result += response.body().string();
         return " [service2 sleep " + sleep + " ms]" + result;
     }
 
     /**
-     * service-3: 9091
+     * service-3
      * @return
      * @throws InterruptedException
      */
@@ -72,9 +76,7 @@ public class HomeController {
     }
 
     /**
-     * service-4: 9092
-     * @return
-     * @throws InterruptedException
+     * service-4
      */
     @RequestMapping("tar")
     public String tar() throws InterruptedException {
