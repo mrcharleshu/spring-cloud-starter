@@ -7,6 +7,13 @@ http://localhost:8761
 ```
 ./exec.sh sleuth run
 ```
+
+> **想看到高亮的命令行日志输出可以运行下面命令**
+> 
+> ```
+> services=("service-1" "service-2" "service-3" "service-4");for service in ${services[*]};do mvn spring-boot:run -P${service} &;sleep 10s;done;
+> ```
+
 ### 运行测试命令
 ```
 curl http://localhost:9091/start

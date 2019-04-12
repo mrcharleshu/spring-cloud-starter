@@ -3,6 +3,7 @@
 function runProfile() {
     profile=$1
     nohup mvn spring-boot:run -P${profile} &
+    #mvn spring-boot:run -P${profile} &
 }
 
 function run() {
@@ -27,6 +28,7 @@ function stop() {
 
 svc=$1
 cmd=$2
+port=$3
 svc_dir=""
 svc_ports=()
 if [ ${svc} == "sleuth" ]
@@ -41,12 +43,18 @@ else
     echo "unknown service \"${svc}\""
 fi
 
-if [ ${cmd} == "run" ]
+if [ ${cmd} == "start" ]
 then
     cd ${svc_dir};run
 elif [ ${cmd} == "stop" ]
 then
     cd ${svc_dir};stop "${svc_ports[*]}"
+elif [ ${cmd} == "restart" ]
+then
+    cd ${svc_dir};stop "${svc_ports[*]}";run
+elif [ ${cmd} == "restart1" ]
+then
+    cd ${svc_dir};killPort 9091;runProfile service-1
 else
     echo "unknown command \"${cmd}\""
 fi

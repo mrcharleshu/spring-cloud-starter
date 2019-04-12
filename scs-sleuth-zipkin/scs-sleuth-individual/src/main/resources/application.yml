@@ -1,9 +1,29 @@
 spring:
   profiles:
     active: @spring.profiles.active@
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+    log:
+      slf4j:
+        whitelisted-mdc-keys: operator
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
     lease-renewal-interval-in-seconds: 5
+logging:
+  pattern:
+    # console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] %clr(%logger{15}){cyan} - %msg%n'
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-}] %clr(${PID:- }){magenta} %clr(-){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+  level:
+    com:
+      charles:
+        sleuth: DEBUG
+    org:
+      springframework:
+        cloud:
+          sleuth: INFO
