@@ -11,13 +11,13 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface LogTracer {
+public @interface LogActionTracer {
 
     /**
      * API的业务操作
      * @return
      */
-    String operation() default "";
+    String action() default "";
 
     /**
      * 改次操作的操作人
@@ -29,10 +29,10 @@ public @interface LogTracer {
      * 改API是否未完成，需要另一个API协助一起完成一个操作
      * @return
      */
-    boolean reenterable() default false;
+    boolean continued() default false;
 
     /**
-     * 如果@LogTracer.reenterable为true，需要设置reentrantKey
+     * 如果@LogActionTracer.reenterable为true，需要设置reentrantKey
      * @return
      */
     ReentrantType reentrantKey() default ReentrantType.SERIAL_NUMBER;

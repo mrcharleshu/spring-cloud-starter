@@ -1,7 +1,8 @@
 package com.charles.sleuth.annotation.impl;
 
-import com.charles.sleuth.annotation.LogTracer;
-import com.google.common.collect.Maps;
+import com.charles.sleuth.annotation.LogActionStepTracer;
+import com.charles.sleuth.annotation.LogActionTracer;
+import com.charles.sleuth.service.CacheService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,10 +15,8 @@ import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-import java.util.Random;
-
-import static com.charles.sleuth.constants.CustomizedMdcKeys.BUSINESS;
+import static com.charles.sleuth.constants.CustomizedMdcKeys.ACTION;
+import static com.charles.sleuth.constants.CustomizedMdcKeys.STEP;
 
 @Aspect
 @Component
@@ -25,39 +24,42 @@ import static com.charles.sleuth.constants.CustomizedMdcKeys.BUSINESS;
 public class LogTracerAspect {
     private static Logger LOGGER = LoggerFactory.getLogger(LogTracerAspect.class);
     private final Tracer tracer;
-    private final Map<String, Span> spanCache = Maps.newConcurrentMap();
-    private static final String REENTRANT_KEY = "XC123535624";
+    public static final String REENTRANT_KEY = "XC123535624";
+    private final CacheService cacheService;
 
     @Autowired
-    public LogTracerAspect(Tracer tracer) {
+    public LogTracerAspect(Tracer tracer, CacheService cacheService) {
         this.tracer = tracer;
+        this.cacheService = cacheService;
     }
 
     @Around(value = "@annotation(tracer)")
-    public Object process(ProceedingJoinPoint joinPoint, LogTracer tracer) {
+    public Object process(ProceedingJoinPoint joinPoint, LogActionTracer tracer) {
         // 如果需要reentrant, 在第二次请求时本条日志的输出的traceId是新生成的
         LOGGER.info("************ one new tracer ************");
         try {
-            MDC.put(BUSINESS, tracer.operation());
-            this.tracer.getCurrentSpan().setBaggageItem(BUSINESS, tracer.operation());
-            if (!tracer.reenterable()) {
-                // 正常情况下此处的REENTRANT_KEY应该从方法中获取
-                Span lastSpan = spanCache.get(REENTRANT_KEY);
-                if (lastSpan != null) {
-                    this.tracer.continueSpan(lastSpan);
-                }
-            }
+            MDC.put(ACTION, tracer.action());
+            this.tracer.getCurrentSpan().setBaggageItem(ACTION, tracer.action());
+//            if (!tracer.continued()) {
+//                // 正常情况下此处的REENTRANT_KEY应该从方法中获取
+//                Span lastSpan = spanCache.get(REENTRANT_KEY);
+//                if (lastSpan != null) {
+//                    // continueSpan之前已经有Span被创建了，当前的Span销毁时会报错
+//                    Span span = Span.builder()
+//                            .parent(lastSpan.getSpanId())
+//                            .spanId(this.tracer.getCurrentSpan().getSpanId())
+//                            .traceId(lastSpan.getTraceId())
+//                            .traceIdHigh(lastSpan.getTraceIdHigh())
+//                            .baggage(lastSpan.getBaggage())
+//                            .build();
+//                    this.tracer.continueSpan(span);
+//                }
+//            }
             Object result = joinPoint.proceed();
             // 方法执行完从result中获取REENTRANT_KEY，如果需要，保存到缓存中
-            if (tracer.reenterable()) {
+            if (tracer.continued()) {
                 Span currentSpan = this.tracer.getCurrentSpan();
-                Span span = Span.builder()
-                        .parent(currentSpan.getSpanId())
-                        .spanId(new Random().nextLong())
-                        .traceId(currentSpan.getTraceId())
-                        .baggage(currentSpan.getBaggage())
-                        .build();
-                spanCache.put(REENTRANT_KEY, span);
+                cacheService.cache(REENTRANT_KEY, currentSpan);
             }
             LOGGER.info("result = {}", result);
             return result;
@@ -69,4 +71,17 @@ public class LogTracerAspect {
         }
     }
 
+    @Around(value = "@annotation(tracer)")
+    public Object process(ProceedingJoinPoint joinPoint, LogActionStepTracer tracer) {
+        // 如果需要reentrant, 在第二次请求时本条日志的输出的traceId是新生成的
+        try {
+            MDC.put(STEP, tracer.step());
+            return joinPoint.proceed();
+        } catch (Throwable e) {
+            LOGGER.error("MDC标识添加异常 ", e);
+            throw new RuntimeException("MDC标识添加异常");
+        } finally {
+            MDC.remove(STEP);
+        }
+    }
 }

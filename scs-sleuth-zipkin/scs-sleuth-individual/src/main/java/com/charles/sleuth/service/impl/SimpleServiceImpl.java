@@ -1,5 +1,6 @@
 package com.charles.sleuth.service.impl;
 
+import com.charles.sleuth.annotation.LogActionStepTracer;
 import com.charles.sleuth.service.RemoteService;
 import com.charles.sleuth.service.SimpleService;
 import org.slf4j.Logger;
@@ -13,13 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import static com.charles.sleuth.constants.ServiceNames.SERVICE_1;
+
 @Service
 public class SimpleServiceImpl implements SimpleService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleServiceImpl.class);
     private final RemoteService remoteService;
     @Value("${spring.application.name}")
     private String applicationName;
-    private static final String SERVICE_1_NAME = "service-0";
 
     @Autowired
     public SimpleServiceImpl(RemoteService remoteService) {
@@ -28,7 +30,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Scheduled(cron = "0/10 * * * * ?")
     public void scheduledWork() throws InterruptedException {
-        if (SERVICE_1_NAME.equals(applicationName)) {
+        if (SERVICE_1.equals(applicationName + "0")) {
             LOGGER.info("************* Start some work from the scheduled task *************");
             asyncMethod();
             remoteService.callService3Async();
@@ -38,6 +40,7 @@ public class SimpleServiceImpl implements SimpleService {
         }
     }
 
+    @LogActionStepTracer(step = "testParallelStream")
     @Override
     public void testParallelStream() {
         Arrays.asList("Tom", "Jerry", "Mary", "Colin").parallelStream().forEach(LOGGER::info);
@@ -49,6 +52,7 @@ public class SimpleServiceImpl implements SimpleService {
         LOGGER.info("Async Method");
     }
 
+    @LogActionStepTracer(step = "testAsync1")
     @Async
     @Override
     public void testAsync1() throws InterruptedException {
@@ -62,6 +66,7 @@ public class SimpleServiceImpl implements SimpleService {
         LOGGER.info("Simple print string: {}", str);
     }
 
+    @LogActionStepTracer(step = "testAsync2")
     @Override
     public void testAsync2() {
         Arrays.asList("Tom", "Jerry", "Mary", "Colin").forEach(this::print);

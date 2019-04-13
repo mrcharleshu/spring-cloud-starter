@@ -1,6 +1,7 @@
 package com.charles.sleuth.controller;
 
-import com.charles.sleuth.annotation.LogTracer;
+import com.charles.sleuth.annotation.LogActionStepTracer;
+import com.charles.sleuth.annotation.LogActionTracer;
 import com.charles.sleuth.annotation.ServiceApiCall;
 import com.charles.sleuth.constants.CustomizedMdcKeys;
 import com.charles.sleuth.constants.ServiceNames;
@@ -35,7 +36,7 @@ public class SleuthHomeController implements ServiceNames {
     }
 
     private String getBaggageValue() {
-        return tracer.getCurrentSpan().getBaggageItem(CustomizedMdcKeys.BUSINESS);
+        return tracer.getCurrentSpan().getBaggageItem(CustomizedMdcKeys.ACTION);
     }
 
     private int sleep() throws InterruptedException {
@@ -46,7 +47,8 @@ public class SleuthHomeController implements ServiceNames {
 
     @ServiceApiCall(service = SERVICE_1)
     @GetMapping("start")
-    @LogTracer(operation = XIAO_XIANG, reenterable = true)
+    @LogActionTracer(action = XIAO_XIANG, continued = true)
+    @LogActionStepTracer(step = "mainMethod")
     public String start() throws InterruptedException {
         LOGGER.info("start");
         int sleep = sleep();
@@ -59,7 +61,7 @@ public class SleuthHomeController implements ServiceNames {
 
     @ServiceApiCall(service = SERVICE_1)
     @GetMapping("reentrant")
-    @LogTracer(operation = XIAO_XIANG)
+    @LogActionTracer(action = XIAO_XIANG)
     public String reentrant() throws InterruptedException {
         LOGGER.info("reentrant");
         int sleep = sleep();

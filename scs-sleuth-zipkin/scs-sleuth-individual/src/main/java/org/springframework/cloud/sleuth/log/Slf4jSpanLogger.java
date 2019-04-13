@@ -27,7 +27,7 @@ public class Slf4jSpanLogger implements SpanLogger {
         MDC.put(Span.SPAN_ID_NAME, Span.idToHex(span.getSpanId()));
         MDC.put(Span.SPAN_EXPORT_NAME, String.valueOf(span.isExportable()));
         MDC.put(Span.TRACE_ID_NAME, span.traceIdString());
-        MDC.put(CustomizedMdcKeys.BUSINESS, span.getBaggageItem(CustomizedMdcKeys.BUSINESS));
+        MDC.put(CustomizedMdcKeys.ACTION, span.getBaggageItem(CustomizedMdcKeys.ACTION));
         log("Starting span: {}", span);
         if (parent != null) {
             log("With parent: {}", parent);
@@ -40,7 +40,7 @@ public class Slf4jSpanLogger implements SpanLogger {
         MDC.put(Span.SPAN_ID_NAME, Span.idToHex(span.getSpanId()));
         MDC.put(Span.TRACE_ID_NAME, span.traceIdString());
         MDC.put(Span.SPAN_EXPORT_NAME, String.valueOf(span.isExportable()));
-        MDC.put(CustomizedMdcKeys.BUSINESS, span.getBaggageItem(CustomizedMdcKeys.BUSINESS));
+        MDC.put(CustomizedMdcKeys.ACTION, span.getBaggageItem(CustomizedMdcKeys.ACTION));
         setParentIdIfPresent(span);
         log("Continued span: {}", span);
     }
@@ -60,14 +60,14 @@ public class Slf4jSpanLogger implements SpanLogger {
             log("With parent: {}", parent);
             MDC.put(Span.SPAN_ID_NAME, Span.idToHex(parent.getSpanId()));
             MDC.put(Span.SPAN_EXPORT_NAME, String.valueOf(parent.isExportable()));
-            MDC.put(CustomizedMdcKeys.BUSINESS, span.getBaggageItem(CustomizedMdcKeys.BUSINESS));
+            MDC.put(CustomizedMdcKeys.ACTION, span.getBaggageItem(CustomizedMdcKeys.ACTION));
             setParentIdIfPresent(parent);
         } else {
             MDC.remove(Span.SPAN_ID_NAME);
             MDC.remove(Span.SPAN_EXPORT_NAME);
             MDC.remove(Span.TRACE_ID_NAME);
             MDC.remove(Span.PARENT_ID_NAME);
-            MDC.remove(CustomizedMdcKeys.BUSINESS);
+            MDC.remove(CustomizedMdcKeys.ACTION);
         }
     }
 
