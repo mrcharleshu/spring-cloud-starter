@@ -20,7 +20,7 @@ import static com.charles.sleuth.constants.CustomizedMdcKeys.STEP;
 
 @Aspect
 @Component
-@Order(2)
+@Order(1)
 public class LogTracerAspect {
     private static Logger LOGGER = LoggerFactory.getLogger(LogTracerAspect.class);
     private final Tracer tracer;
@@ -40,21 +40,6 @@ public class LogTracerAspect {
         try {
             MDC.put(ACTION, tracer.action());
             this.tracer.getCurrentSpan().setBaggageItem(ACTION, tracer.action());
-//            if (!tracer.continued()) {
-//                // 正常情况下此处的REENTRANT_KEY应该从方法中获取
-//                Span lastSpan = spanCache.get(REENTRANT_KEY);
-//                if (lastSpan != null) {
-//                    // continueSpan之前已经有Span被创建了，当前的Span销毁时会报错
-//                    Span span = Span.builder()
-//                            .parent(lastSpan.getSpanId())
-//                            .spanId(this.tracer.getCurrentSpan().getSpanId())
-//                            .traceId(lastSpan.getTraceId())
-//                            .traceIdHigh(lastSpan.getTraceIdHigh())
-//                            .baggage(lastSpan.getBaggage())
-//                            .build();
-//                    this.tracer.continueSpan(span);
-//                }
-//            }
             Object result = joinPoint.proceed();
             // 方法执行完从result中获取REENTRANT_KEY，如果需要，保存到缓存中
             if (tracer.continued()) {

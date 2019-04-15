@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/")
@@ -46,15 +50,24 @@ public class SleuthHomeController implements ServiceNames {
     }
 
     @ServiceApiCall(service = SERVICE_1)
-    @GetMapping("start")
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")
+    @GetMapping("start")
     public String start() throws InterruptedException {
         LOGGER.info("start");
         int sleep = sleep();
         simpleService.testParallelStream();
         simpleService.testAsync1();
         simpleService.testAsync2();
+        List<String> results = IntStream.range(0, 3).mapToObj(i -> {
+            try {
+                return simpleService.testAsync3().get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                return "";
+            }
+        }).collect(Collectors.toList());
+        LOGGER.info("Async result = {}", results.toString());
         String response = remoteService.callService2();
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }

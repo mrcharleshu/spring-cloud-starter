@@ -1,5 +1,6 @@
 package com.charles.sleuth.service.impl;
 
+import com.charles.sleuth.annotation.LogActionStepTracer;
 import com.charles.sleuth.service.RemoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +22,19 @@ public class RemoteServiceImpl implements RemoteService {
         this.restTemplate = restTemplate;
     }
 
+    @LogActionStepTracer(step = "callService2")
     @Override
     public String callService2() {
         return restTemplate.getForEntity(SERVICE_2_API_URL, String.class).getBody();
     }
 
+    @LogActionStepTracer(step = "callService3")
     @Override
     public String callService3() {
         return restTemplate.getForEntity(SERVICE_3_API_URL, String.class).getBody();
     }
 
+    @LogActionStepTracer(step = "callService3Async")
     @Async
     @Override
     public void callService3Async() {
@@ -38,6 +42,7 @@ public class RemoteServiceImpl implements RemoteService {
         callService3();
     }
 
+    @LogActionStepTracer(step = "callService4")
     @Override
     public String callService4() {
         return restTemplate.getForEntity(SERVICE_4_API_URL, String.class).getBody();

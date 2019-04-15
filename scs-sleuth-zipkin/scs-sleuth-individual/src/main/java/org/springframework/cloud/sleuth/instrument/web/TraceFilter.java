@@ -152,7 +152,7 @@ public class TraceFilter extends GenericFilterBean {
 		boolean skip = this.skipPattern.matcher(uri).matches()
 				|| Span.SPAN_NOT_SAMPLED.equals(ServletUtils.getHeader(request, response, Span.SAMPLED_NAME));
 		Span spanFromRequest = getSpanFromAttribute(request);
-		if (spanFromRequest == null) {
+		if (spanFromRequest == null && request.getRequestURI().endsWith("reentrant")) {
 			Span lastSpan = cacheService().get(LogTracerAspect.REENTRANT_KEY);
 			if (lastSpan != null) {
 				spanFromRequest = Span.builder()

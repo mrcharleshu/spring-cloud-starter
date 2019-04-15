@@ -22,6 +22,12 @@ public class CacheServiceImpl implements CacheService {
 
     @Override
     public Span get(String key) {
-        return ServiceNames.SERVICE_1.equals(applicationName) ? spanCache.get(key) : null;
+        if (ServiceNames.SERVICE_1.equals(applicationName)) {
+            Span span = spanCache.get(key);
+            spanCache.remove(key);
+            System.out.println(spanCache.keySet());
+            return span;
+        }
+        return null;
     }
 }

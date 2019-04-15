@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(1)
+@Order(2)
 public class ServiceApiCallAspect {
     private static Logger LOGGER = LoggerFactory.getLogger(ServiceApiCallAspect.class);
 
@@ -26,5 +26,4 @@ public class ServiceApiCallAspect {
             LOGGER.info("[{}]调用结束", call.service());
         }
     }
-
 }
