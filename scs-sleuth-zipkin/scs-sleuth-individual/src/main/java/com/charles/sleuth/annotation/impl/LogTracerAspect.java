@@ -52,7 +52,7 @@ public class LogTracerAspect {
             LOGGER.error("MDC标识添加异常 ", e);
             throw new RuntimeException("MDC标识添加异常");
         } finally {
-            MDC.clear();
+            MDC.remove(ACTION);
         }
     }
 

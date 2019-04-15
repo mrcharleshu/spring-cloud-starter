@@ -1,6 +1,7 @@
 package com.charles.sleuth.service;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public interface SimpleService {
 
@@ -8,7 +9,9 @@ public interface SimpleService {
 
     void testAsync2() throws InterruptedException;
 
-    Future<String> testAsync3();
+    void testAsync3() throws ExecutionException, InterruptedException;
+
+    CompletableFuture<String> asyncCompletableFuture() throws InterruptedException;
 
     void testParallelStream() throws InterruptedException;
 }

@@ -8,12 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import static com.charles.sleuth.constants.ServiceNames.SERVICE_1;
@@ -75,15 +75,28 @@ public class SimpleServiceImpl implements SimpleService {
     }
 
     @Async
-    public Future<String> testAsync3() {
+    public CompletableFuture<String> asyncCompletableFuture() throws InterruptedException {
+        // https://spring.io/guides/gs/async-method/
         LOGGER.info("Execute method asynchronously - " + Thread.currentThread().getName());
-        try {
-            Thread.sleep(100);
-            return new AsyncResult<>("hello world !!!!");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        Thread.sleep(100);
+        // return new AsyncResult<>("hello world !!!!");
+        return CompletableFuture.completedFuture("hello world !!!!");
     }
 
+    @Override
+    public void testAsync3() throws ExecutionException, InterruptedException {
+        // Start the clock
+        long start = System.currentTimeMillis();
+        // Kick of multiple, asynchronous lookups
+        CompletableFuture<String> result1 = asyncCompletableFuture();
+        CompletableFuture<String> result2 = asyncCompletableFuture();
+        CompletableFuture<String> result3 = asyncCompletableFuture();
+        // Wait until they are all done
+        CompletableFuture.allOf(result1, result2, result3).join();
+        // Print results, including elapsed time
+        LOGGER.info("Elapsed time: " + (System.currentTimeMillis() - start));
+        LOGGER.info("--> " + result1.get());
+        LOGGER.info("--> " + result2.get());
+        LOGGER.info("--> " + result3.get());
+    }
 }

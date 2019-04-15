@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/")
@@ -49,25 +47,33 @@ public class SleuthHomeController implements ServiceNames {
         return sleep;
     }
 
+    public void testAsync3() throws ExecutionException, InterruptedException {
+        // Start the clock
+        long start = System.currentTimeMillis();
+        // Kick of multiple, asynchronous lookups
+        CompletableFuture<String> result1 = simpleService.asyncCompletableFuture();
+        CompletableFuture<String> result2 = simpleService.asyncCompletableFuture();
+        CompletableFuture<String> result3 = simpleService.asyncCompletableFuture();
+        // Wait until they are all done
+        CompletableFuture.allOf(result1, result2, result3).join();
+        // Print results, including elapsed time
+        LOGGER.info("Elapsed time: " + (System.currentTimeMillis() - start));
+        LOGGER.info("--> " + result1.get());
+        LOGGER.info("--> " + result2.get());
+        LOGGER.info("--> " + result3.get());
+    }
+
     @ServiceApiCall(service = SERVICE_1)
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")
     @GetMapping("start")
-    public String start() throws InterruptedException {
+    public String start() throws InterruptedException, ExecutionException {
         LOGGER.info("start");
         int sleep = sleep();
         simpleService.testParallelStream();
         simpleService.testAsync1();
         simpleService.testAsync2();
-        List<String> results = IntStream.range(0, 3).mapToObj(i -> {
-            try {
-                return simpleService.testAsync3().get();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-                return "";
-            }
-        }).collect(Collectors.toList());
-        LOGGER.info("Async result = {}", results.toString());
+        testAsync3();
         String response = remoteService.callService2();
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }
