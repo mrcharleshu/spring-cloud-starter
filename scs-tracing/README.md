@@ -12,6 +12,7 @@ http://localhost:8761
 > 
 > ```
 > services=(1 2 3 4);for i in ${services[*]};do mvn spring-boot:run -Pservice-${i} &;sleep 10s;done;
+> services=(1 2 3 4);for i in ${services[*]};do mvn clean;mvn spring-boot:run -Pservice-${i} &;sleep 20s;done;
 > ```
 
 ### 运行测试命令

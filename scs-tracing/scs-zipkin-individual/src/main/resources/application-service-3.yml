@@ -1,0 +1,7 @@
+server:
+  port: 9093
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: service-3

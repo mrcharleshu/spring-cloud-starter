@@ -1,7 +1,7 @@
 server:
-  port: 9097
+  port: 9091
   servlet:
     context-path: /
 spring:
   application:
-    name: service-3
+    name: service-1
