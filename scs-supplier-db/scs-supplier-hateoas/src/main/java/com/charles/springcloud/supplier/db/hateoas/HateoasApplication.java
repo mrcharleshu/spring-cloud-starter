@@ -16,6 +16,7 @@ import java.util.TimeZone;
 @EnableJpaAuditing
 @EntityScan(basePackageClasses = {HateoasApplication.class, Jsr310JpaConverters.class})
 public class HateoasApplication {
+
     public static void main(String[] args) {
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         SpringApplication.run(HateoasApplication.class, args);

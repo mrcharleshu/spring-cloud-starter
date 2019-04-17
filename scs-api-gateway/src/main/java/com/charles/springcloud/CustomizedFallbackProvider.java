@@ -14,7 +14,8 @@ import java.io.InputStream;
 public abstract class CustomizedFallbackProvider implements FallbackProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomizedFallbackProvider.class);
 
-    private ClientHttpResponse fallbackResponse() {
+    @Override
+    public ClientHttpResponse fallbackResponse() {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() {
@@ -51,8 +52,8 @@ public abstract class CustomizedFallbackProvider implements FallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse(String route, Throwable throwable) {
-        LOGGER.info("route = {}", route);
+    public ClientHttpResponse fallbackResponse(Throwable throwable) {
+        // LOGGER.info("route = {}", route);
         Throwable cause = throwable.getCause();
         while (cause != null && cause.getCause() != null) {
             cause = cause.getCause();

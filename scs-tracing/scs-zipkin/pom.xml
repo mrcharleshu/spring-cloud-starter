@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.charles.springcloud</groupId>
+        <artifactId>scs-tracing-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>scs-zipkin</artifactId>
+    <packaging>jar</packaging>
+
+    <!-- https://mvnrepository.com/artifact/io.zipkin.brave/brave-core -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-core</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.zipkin.brave/brave-http -->
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-http</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-spancollector-http</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-web-servlet-filter</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-okhttp</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http-client.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <profiles>
+        <profile>
+            <id>service-1</id>
+            <properties>
+                <spring.profiles.active>service-1</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-2</id>
+            <properties>
+                <spring.profiles.active>service-2</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-3</id>
+            <properties>
+                <spring.profiles.active>service-3</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-4</id>
+            <properties>
+                <spring.profiles.active>service-4</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+</project>
