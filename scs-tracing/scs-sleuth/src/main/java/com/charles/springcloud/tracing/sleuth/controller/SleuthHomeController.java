@@ -1,14 +1,16 @@
 package com.charles.springcloud.tracing.sleuth.controller;
 
+import com.charles.springcloud.tracing.base.annotation.LogApiCall;
+import com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys;
+import com.charles.springcloud.tracing.base.constants.ServiceNames;
 import com.charles.springcloud.tracing.base.service.RemoteService;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionTracer;
-import com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys;
-import com.charles.springcloud.tracing.base.constants.ServiceNames;
 import com.charles.springcloud.tracing.sleuth.service.SimpleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,16 +26,17 @@ import java.util.concurrent.TimeUnit;
 public class SleuthHomeController implements ServiceNames {
     private static final Logger LOGGER = LoggerFactory.getLogger(SleuthHomeController.class);
     private Random random = new Random();
+    private final Tracer tracer;
     private final SimpleService simpleService;
     private final RemoteService remoteService;
-    private final Tracer tracer;
     private static final String XIAO_XIANG = "XiaoXiang";
 
     @Autowired
-    public SleuthHomeController(SimpleService simpleService, RemoteService remoteService, Tracer tracer) {
+    public SleuthHomeController(Tracer tracer, SimpleService simpleService,
+            @Qualifier(value = "sleuthRemoteServiceImpl") RemoteService remoteService) {
+        this.tracer = tracer;
         this.simpleService = simpleService;
         this.remoteService = remoteService;
-        this.tracer = tracer;
     }
 
     private String getBaggageValue() {
@@ -62,12 +65,14 @@ public class SleuthHomeController implements ServiceNames {
         LOGGER.info("--> " + result3.get());
     }
 
+    @LogApiCall(action = SERVICE_1)
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")
     @GetMapping("start")
     public String start() throws InterruptedException, ExecutionException {
         LOGGER.info("start");
         int sleep = sleep();
+        simpleService.testNewSpanMethod("testTagValue");
         simpleService.testParallelStream();
         simpleService.testAsync1();
         simpleService.testAsync2();

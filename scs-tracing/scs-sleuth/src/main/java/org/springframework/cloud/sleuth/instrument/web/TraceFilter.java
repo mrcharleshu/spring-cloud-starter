@@ -29,6 +29,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.charles.springcloud.tracing.base.constants.ActionByMultiStepsKeys;
 import com.charles.springcloud.tracing.sleuth.annotation.LogTracerAspect;
 import com.charles.springcloud.tracing.sleuth.service.CacheService;
 import org.apache.commons.logging.Log;
@@ -153,7 +154,7 @@ public class TraceFilter extends GenericFilterBean {
 				|| Span.SPAN_NOT_SAMPLED.equals(ServletUtils.getHeader(request, response, Span.SAMPLED_NAME));
 		Span spanFromRequest = getSpanFromAttribute(request);
 		if (spanFromRequest == null && request.getRequestURI().endsWith("reentrant")) {
-			Span lastSpan = cacheService().get(LogTracerAspect.REENTRANT_KEY);
+			Span lastSpan = cacheService().get(ActionByMultiStepsKeys.REENTRANT_KEY);
 			if (lastSpan != null) {
 				spanFromRequest = Span.builder()
 						.parent(lastSpan.getSpanId())

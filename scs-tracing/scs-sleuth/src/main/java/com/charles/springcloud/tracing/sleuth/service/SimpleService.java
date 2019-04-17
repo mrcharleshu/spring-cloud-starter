@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 
 public interface SimpleService {
 
+    void testNewSpanMethod(String value);
+
     void testAsync1() throws InterruptedException;
 
     void testAsync2() throws InterruptedException;

@@ -1,5 +1,6 @@
 package com.charles.springcloud.tracing.skywalking.controller;
 
+import com.charles.springcloud.tracing.base.annotation.LogApiCall;
 import com.charles.springcloud.tracing.base.service.RemoteService;
 import org.apache.skywalking.apm.toolkit.trace.ActiveSpan;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
@@ -39,6 +40,7 @@ public class SkyWalkingHomeController {
     }
 
     // 对任何需要追踪的方法，使用@Trace标注，则此方法会被加入到追踪链中。
+    @LogApiCall(action = SERVICE_1)
     @Trace(operationName = "API[start]")
     @GetMapping("start")
     public String start() throws InterruptedException {

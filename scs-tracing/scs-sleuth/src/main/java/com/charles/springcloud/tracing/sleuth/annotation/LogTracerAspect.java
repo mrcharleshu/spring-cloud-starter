@@ -1,5 +1,7 @@
 package com.charles.springcloud.tracing.sleuth.annotation;
 
+import com.charles.springcloud.tracing.base.constants.ActionByMultiStepsKeys;
+import com.charles.springcloud.tracing.base.constants.AspectOrder;
 import com.charles.springcloud.tracing.sleuth.service.CacheService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,11 +20,10 @@ import static com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys.S
 
 @Aspect
 @Component
-@Order(1)
+@Order(AspectOrder.LOG_TRACER_ORDER)
 public class LogTracerAspect {
-    private static Logger LOGGER = LoggerFactory.getLogger(LogTracerAspect.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogTracerAspect.class);
     private final Tracer tracer;
-    public static final String REENTRANT_KEY = "XC123535624";
     private final CacheService cacheService;
 
     @Autowired
@@ -42,7 +43,7 @@ public class LogTracerAspect {
             // 方法执行完从result中获取REENTRANT_KEY，如果需要，保存到缓存中
             if (tracer.continued()) {
                 Span currentSpan = this.tracer.getCurrentSpan();
-                cacheService.cache(REENTRANT_KEY, currentSpan);
+                cacheService.cache(ActionByMultiStepsKeys.REENTRANT_KEY, currentSpan);
             }
             LOGGER.info("result = {}", result);
             return result;

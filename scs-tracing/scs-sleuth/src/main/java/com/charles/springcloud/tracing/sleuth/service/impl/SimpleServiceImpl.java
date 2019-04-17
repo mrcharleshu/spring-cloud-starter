@@ -1,14 +1,12 @@
 package com.charles.springcloud.tracing.sleuth.service.impl;
 
-import com.charles.springcloud.tracing.base.service.RemoteService;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import com.charles.springcloud.tracing.sleuth.service.SimpleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.sleuth.annotation.NewSpan;
+import org.springframework.cloud.sleuth.annotation.SpanTag;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -16,36 +14,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_1;
-
 @Service
 public class SimpleServiceImpl implements SimpleService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleServiceImpl.class);
-    private final RemoteService remoteService;
-    @Value("${spring.application.name}")
-    private String applicationName;
-
-    @Autowired
-    public SimpleServiceImpl(RemoteService remoteService) {
-        this.remoteService = remoteService;
-    }
-
-    @Scheduled(cron = "0/10 * * * * ?")
-    public void scheduledWork() throws InterruptedException {
-        if (SERVICE_1.equals(applicationName + "0")) {
-            LOGGER.info("************* Start some work from the scheduled task *************");
-            asyncMethod();
-            remoteService.callService3Async();
-            asyncMethod();
-            remoteService.callService3Async();
-            LOGGER.info("******************* End work from scheduled task *******************");
-        }
-    }
-
-    @LogActionStepTracer(step = "testParallelStream")
+    @NewSpan(name = "testNewSpanMethod")
     @Override
-    public void testParallelStream() {
-        Arrays.asList("Tom", "Jerry", "Mary", "Colin").parallelStream().forEach(LOGGER::info);
+    public void testNewSpanMethod(@SpanTag("testTag") String testTag) {
+        LOGGER.info("This is a new span, testTag = {}", testTag);
     }
 
     @Async
@@ -74,15 +49,6 @@ public class SimpleServiceImpl implements SimpleService {
         Arrays.asList("Tom", "Jerry", "Mary", "Colin").forEach(this::print);
     }
 
-    @Async
-    public CompletableFuture<String> asyncCompletableFuture() throws InterruptedException {
-        // https://spring.io/guides/gs/async-method/
-        LOGGER.info("Execute method asynchronously - " + Thread.currentThread().getName());
-        Thread.sleep(100);
-        // return new AsyncResult<>("hello world !!!!");
-        return CompletableFuture.completedFuture("hello world !!!!");
-    }
-
     @Override
     public void testAsync3() throws ExecutionException, InterruptedException {
         // Start the clock
@@ -98,5 +64,20 @@ public class SimpleServiceImpl implements SimpleService {
         LOGGER.info("--> " + result1.get());
         LOGGER.info("--> " + result2.get());
         LOGGER.info("--> " + result3.get());
+    }
+
+    @Async
+    public CompletableFuture<String> asyncCompletableFuture() throws InterruptedException {
+        // https://spring.io/guides/gs/async-method/
+        LOGGER.info("Execute method asynchronously - " + Thread.currentThread().getName());
+        Thread.sleep(100);
+        // return new AsyncResult<>("hello world !!!!");
+        return CompletableFuture.completedFuture("hello world !!!!");
+    }
+
+    @LogActionStepTracer(step = "testParallelStream")
+    @Override
+    public void testParallelStream() {
+        Arrays.asList("Tom", "Jerry", "Mary", "Colin").parallelStream().forEach(LOGGER::info);
     }
 }

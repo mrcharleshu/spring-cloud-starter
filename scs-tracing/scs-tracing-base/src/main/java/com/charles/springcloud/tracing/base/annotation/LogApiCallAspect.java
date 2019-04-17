@@ -1,5 +1,6 @@
 package com.charles.springcloud.tracing.base.annotation;
 
+import com.charles.springcloud.tracing.base.constants.AspectOrder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,19 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(2)
-public class ServiceApiCallAspect {
-    private static Logger LOGGER = LoggerFactory.getLogger(ServiceApiCallAspect.class);
+@Order(AspectOrder.LOG_API_CALL_ORDER)
+public class LogApiCallAspect {
+    private static Logger LOGGER = LoggerFactory.getLogger(LogApiCallAspect.class);
 
     @Around(value = "@annotation(call)")
-    public Object process(ProceedingJoinPoint joinPoint, ServiceApiCall call) {
-        LOGGER.info("[{}]执行调用", call.service());
+    public Object process(ProceedingJoinPoint joinPoint, LogApiCall call) {
+        LOGGER.info("[{}]执行调用", call.action());
         try {
             return joinPoint.proceed();
         } catch (Throwable e) {
             throw new RuntimeException(e.getMessage());
         } finally {
-            LOGGER.info("[{}]调用结束", call.service());
+            LOGGER.info("[{}]调用结束", call.action());
         }
     }
 }

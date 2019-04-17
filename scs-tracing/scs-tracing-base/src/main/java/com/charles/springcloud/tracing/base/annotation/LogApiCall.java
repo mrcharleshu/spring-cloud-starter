@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface ServiceApiCall {
-    String service() default "";
+public @interface LogApiCall {
+    String action() default "";
 }
