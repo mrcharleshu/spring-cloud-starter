@@ -21,6 +21,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.charles.springcloud</groupId>
+            <artifactId>scs-tracing-base</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <exclusions>
