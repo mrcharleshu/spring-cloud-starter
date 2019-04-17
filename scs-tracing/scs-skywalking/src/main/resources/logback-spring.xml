@@ -5,6 +5,7 @@
     <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="localhost"/>
     
     <property name="LOGO_HOME" value="/usr/local/deploy/logs"/>
+    <!--https://github.com/apache/incubator-skywalking/blob/v3.2.6/docs/cn/Application-toolkit-logback-1.x-CN.md-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
         <!--<layout class="ch.qos.logback.classic.PatternLayout">-->

@@ -31,13 +31,15 @@ public class SkyWalkingHomeController {
         this.remoteService = remoteService;
     }
 
+    @Trace(operationName = "Method[start[sleep]]")
     private int sleep() throws InterruptedException {
         int sleep = random.nextInt(100);
         TimeUnit.MILLISECONDS.sleep(sleep);
         return sleep;
     }
 
-    @Trace
+    // 对任何需要追踪的方法，使用@Trace标注，则此方法会被加入到追踪链中。
+    @Trace(operationName = "API[start]")
     @GetMapping("start")
     public String start() throws InterruptedException {
         ActiveSpan.tag("tag-1", "销项tag1");
