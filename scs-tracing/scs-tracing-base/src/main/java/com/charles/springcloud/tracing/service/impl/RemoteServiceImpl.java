@@ -1,6 +1,6 @@
-package com.charles.springcloud.tracing.base.service.impl;
+package com.charles.springcloud.tracing.service.impl;
 
-import com.charles.springcloud.tracing.base.service.RemoteService;
+import com.charles.springcloud.tracing.service.RemoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

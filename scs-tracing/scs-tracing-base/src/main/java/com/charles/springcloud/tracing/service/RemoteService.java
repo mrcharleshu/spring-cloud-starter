@@ -1,4 +1,4 @@
-package com.charles.springcloud.tracing.base.service;
+package com.charles.springcloud.tracing.service;
 
 public interface RemoteService {
     String callService2();

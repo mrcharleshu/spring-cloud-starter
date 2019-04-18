@@ -12,7 +12,7 @@
 
 ### SpringCloud服务简介
 [^_^]: ![](http://img.blog.csdn.net/20161122094129037)
-![](/files/scs.jpg)
+![](/static/scs.jpg)
 
 - Eureka：实际上在整个过程中维护者每个服务的生命周期。每一个服务都要被注册到Eureka服务器上，这里被注册到Eureka的服务又称为Client。Eureka通过心跳来确定服务是否正常。Eureka只做请求转发。同时Eureka是支持集群的
 - Zuul：类似于网关，反向代理。为外部请求提供统一入口。 

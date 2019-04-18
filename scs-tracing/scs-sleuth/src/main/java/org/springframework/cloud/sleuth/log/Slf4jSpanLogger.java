@@ -1,6 +1,6 @@
 package org.springframework.cloud.sleuth.log;
 
-import com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys;
+import com.charles.springcloud.tracing.constants.CustomizedMdcKeys;
 import org.slf4j.Logger;
 import org.slf4j.MDC;
 import org.springframework.cloud.sleuth.Span;

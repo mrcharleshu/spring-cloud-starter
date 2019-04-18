@@ -1,6 +1,6 @@
-package com.charles.springcloud.tracing.sleuth.service.impl;
+package com.charles.springcloud.tracing.sleuth.service;
 
-import com.charles.springcloud.tracing.base.service.RemoteService;
+import com.charles.springcloud.tracing.service.RemoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_1;
+import static com.charles.springcloud.tracing.constants.ServiceNames.SERVICE_1;
 
 @Service
 public class JobService {

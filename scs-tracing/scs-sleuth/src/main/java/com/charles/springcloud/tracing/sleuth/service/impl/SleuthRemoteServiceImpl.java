@@ -1,7 +1,7 @@
 package com.charles.springcloud.tracing.sleuth.service.impl;
 
-import com.charles.springcloud.tracing.base.service.RemoteService;
-import com.charles.springcloud.tracing.base.service.impl.RemoteServiceImpl;
+import com.charles.springcloud.tracing.service.RemoteService;
+import com.charles.springcloud.tracing.service.impl.RemoteServiceImpl;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.charles.springcloud.tracing.base.annotation;
+package com.charles.springcloud.tracing.annotation;
 
-import com.charles.springcloud.tracing.base.constants.AspectOrder;
+import com.charles.springcloud.tracing.constants.AspectOrder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

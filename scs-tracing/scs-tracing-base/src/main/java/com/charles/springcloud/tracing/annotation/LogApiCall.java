@@ -1,4 +1,4 @@
-package com.charles.springcloud.tracing.base.annotation;
+package com.charles.springcloud.tracing.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

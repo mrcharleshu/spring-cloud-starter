@@ -1,9 +1,11 @@
 package com.charles.springcloud.tracing.sleuth.service;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface SimpleService {
+    List<String> TEST_NAMES = Arrays.asList("Tom", "Jerry", "Mary", "Colin");
 
     void testNewSpanMethod(String value);
 
@@ -12,8 +14,6 @@ public interface SimpleService {
     void testAsync2() throws InterruptedException;
 
     void testAsync3() throws ExecutionException, InterruptedException;
-
-    CompletableFuture<String> asyncCompletableFuture() throws InterruptedException;
 
     void testParallelStream() throws InterruptedException;
 }

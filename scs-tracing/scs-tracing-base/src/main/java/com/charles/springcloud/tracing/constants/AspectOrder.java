@@ -1,4 +1,4 @@
-package com.charles.springcloud.tracing.base.constants;
+package com.charles.springcloud.tracing.constants;
 
 public final class AspectOrder {
     public static final int LOG_TRACER_ORDER = 1;

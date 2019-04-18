@@ -1,4 +1,4 @@
-package com.charles.springcloud.tracing.base.constants;
+package com.charles.springcloud.tracing.constants;
 
 public interface CustomizedMdcKeys {
     String ACTION = "action";

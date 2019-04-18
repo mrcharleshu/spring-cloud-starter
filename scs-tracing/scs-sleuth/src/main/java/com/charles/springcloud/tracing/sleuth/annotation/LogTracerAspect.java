@@ -1,7 +1,7 @@
 package com.charles.springcloud.tracing.sleuth.annotation;
 
-import com.charles.springcloud.tracing.base.constants.ActionByMultiStepsKeys;
-import com.charles.springcloud.tracing.base.constants.AspectOrder;
+import com.charles.springcloud.tracing.constants.ActionByMultiStepsKeys;
+import com.charles.springcloud.tracing.constants.AspectOrder;
 import com.charles.springcloud.tracing.sleuth.service.CacheService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,8 +15,8 @@ import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import static com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys.ACTION;
-import static com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys.STEP;
+import static com.charles.springcloud.tracing.constants.CustomizedMdcKeys.ACTION;
+import static com.charles.springcloud.tracing.constants.CustomizedMdcKeys.STEP;
 
 @Aspect
 @Component

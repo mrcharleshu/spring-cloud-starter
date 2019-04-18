@@ -1,9 +1,9 @@
 package com.charles.springcloud.tracing.sleuth.controller;
 
-import com.charles.springcloud.tracing.base.annotation.LogApiCall;
-import com.charles.springcloud.tracing.base.constants.CustomizedMdcKeys;
-import com.charles.springcloud.tracing.base.constants.ServiceNames;
-import com.charles.springcloud.tracing.base.service.RemoteService;
+import com.charles.springcloud.tracing.annotation.LogApiCall;
+import com.charles.springcloud.tracing.constants.CustomizedMdcKeys;
+import com.charles.springcloud.tracing.constants.ServiceNames;
+import com.charles.springcloud.tracing.service.RemoteService;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionTracer;
 import com.charles.springcloud.tracing.sleuth.service.SimpleService;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -49,22 +48,6 @@ public class SleuthHomeController implements ServiceNames {
         return sleep;
     }
 
-    public void testAsync3() throws ExecutionException, InterruptedException {
-        // Start the clock
-        long start = System.currentTimeMillis();
-        // Kick of multiple, asynchronous lookups
-        CompletableFuture<String> result1 = simpleService.asyncCompletableFuture();
-        CompletableFuture<String> result2 = simpleService.asyncCompletableFuture();
-        CompletableFuture<String> result3 = simpleService.asyncCompletableFuture();
-        // Wait until they are all done
-        CompletableFuture.allOf(result1, result2, result3).join();
-        // Print results, including elapsed time
-        LOGGER.info("Elapsed time: " + (System.currentTimeMillis() - start));
-        LOGGER.info("--> " + result1.get());
-        LOGGER.info("--> " + result2.get());
-        LOGGER.info("--> " + result3.get());
-    }
-
     @LogApiCall(action = SERVICE_1)
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")
@@ -73,10 +56,10 @@ public class SleuthHomeController implements ServiceNames {
         LOGGER.info("start");
         int sleep = sleep();
         simpleService.testNewSpanMethod("testTagValue");
-        simpleService.testParallelStream();
+        // simpleService.testParallelStream();
         simpleService.testAsync1();
         simpleService.testAsync2();
-        testAsync3();
+        simpleService.testAsync3();
         String response = remoteService.callService2();
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }

@@ -1,6 +1,6 @@
 package com.charles.springcloud.tracing.sleuth.service.impl;
 
-import com.charles.springcloud.tracing.base.constants.ServiceNames;
+import com.charles.springcloud.tracing.constants.ServiceNames;
 import com.charles.springcloud.tracing.sleuth.service.CacheService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,7 +1,7 @@
 package com.charles.springcloud.tracing.skywalking.controller;
 
-import com.charles.springcloud.tracing.base.annotation.LogApiCall;
-import com.charles.springcloud.tracing.base.service.RemoteService;
+import com.charles.springcloud.tracing.annotation.LogApiCall;
+import com.charles.springcloud.tracing.service.RemoteService;
 import org.apache.skywalking.apm.toolkit.trace.ActiveSpan;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.apache.skywalking.apm.toolkit.trace.TraceContext;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_1;
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_2;
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_3;
-import static com.charles.springcloud.tracing.base.constants.ServiceNames.SERVICE_4;
+import static com.charles.springcloud.tracing.constants.ServiceNames.SERVICE_1;
+import static com.charles.springcloud.tracing.constants.ServiceNames.SERVICE_2;
+import static com.charles.springcloud.tracing.constants.ServiceNames.SERVICE_3;
+import static com.charles.springcloud.tracing.constants.ServiceNames.SERVICE_4;
 
 @RestController
 @RequestMapping("/")
