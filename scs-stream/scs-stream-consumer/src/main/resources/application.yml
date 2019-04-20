@@ -1,0 +1,48 @@
+server:
+  port: 8200
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: scs-stream-consumer
+  cloud:
+    stream:
+      default-binder: kafka
+      bindings:
+        input_1:
+          destination: stream-topic-1
+        input_2:
+          destination: stream-topic-2
+logging:
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-}]) %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}.%M:%L){cyan} %clr(:){faint} %m%n'
+  level:
+    org.springframework.cloud.stream: DEBUG
+
+#  kafka:
+#    bootstrap-servers: localhost:9092 #kafka服务地址
+#    consumer:
+#      group-id: consumer1
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+#      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+#      client-id: producer1
+#
+#        input2:
+#          destination: test-topic
+#          content-type: text/plain
+#          group: test-group2
+#          consumer:
+#            orderly: false
+#            tags: tagStr
+#            concurrency: 20
+#            maxAttempts: 1
+#        input3:
+#          destination: test-topic
+#          content-type: application/json
+#          group: test-group3
+#          consumer:
+#            tags: tagObj
+#            concurrency: 20

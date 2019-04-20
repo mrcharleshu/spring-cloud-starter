@@ -1,3 +1,5 @@
+server:
+  context-path: /
 spring:
   profiles:
     active: '@spring.profiles.active@'

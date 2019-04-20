@@ -24,11 +24,11 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/")
 public class SleuthHomeController implements ServiceNames {
     private static final Logger LOGGER = LoggerFactory.getLogger(SleuthHomeController.class);
-    private Random random = new Random();
+    private static final Random random = new Random();
+    private static final String XIAO_XIANG = "XiaoXiang";
     private final Tracer tracer;
     private final SimpleService simpleService;
     private final RemoteService remoteService;
-    private static final String XIAO_XIANG = "XiaoXiang";
 
     @Autowired
     public SleuthHomeController(Tracer tracer, SimpleService simpleService,

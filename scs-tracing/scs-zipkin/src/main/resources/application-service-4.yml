@@ -1,7 +1,0 @@
-server:
-  port: 9094
-  servlet:
-    context-path: /
-spring:
-  application:
-    name: service-4

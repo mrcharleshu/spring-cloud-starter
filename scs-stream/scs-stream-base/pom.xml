@@ -6,18 +6,18 @@
 
     <parent>
         <groupId>com.charles.springcloud</groupId>
-        <artifactId>scs-tracing-parent</artifactId>
+        <artifactId>scs-stream-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-tracing-base</artifactId>
+    <artifactId>scs-stream-base</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
         </dependency>
     </dependencies>
 

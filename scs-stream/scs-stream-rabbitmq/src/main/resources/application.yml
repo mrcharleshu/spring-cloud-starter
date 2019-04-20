@@ -1,0 +1,22 @@
+server:
+  port: 8202
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: scs-stream-rabbitmq
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        output_1:
+          destination: stream-topic-1
+        output_2:
+          destination: stream-topic-2
+logging:
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-}]) %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}.%M:%L){cyan} %clr(:){faint} %m%n'
+  level:
+    org.springframework.cloud.stream: DEBUG

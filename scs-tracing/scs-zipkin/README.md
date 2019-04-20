@@ -413,7 +413,7 @@ server.port=9090
         Random random = new Random();
         int sleep= random.nextInt(100);
         TimeUnit.MILLISECONDS.sleep(sleep);
-        Request request = new Request.Builder().url("http://localhost:9091/bar").get().build();  //service3
+        Request request = new Request.Builder().url("http://localhost:9091/info").get().build();  //service3
         Response response = client.newCall(request).execute();
         String result = response.body().string();
         request = new Request.Builder().url("http://localhost:9092/tar").get().build();  //service4
@@ -427,8 +427,8 @@ server.port=9090
 
 方法分别为
 ```java
- @RequestMapping("bar")
-    public String bar() throws InterruptedException, IOException {  //service3 method
+ @RequestMapping("info")
+    public String info() throws InterruptedException, IOException {  //service3 method
         Random random = new Random();
         int sleep= random.nextInt(100);
         TimeUnit.MILLISECONDS.sleep(sleep);

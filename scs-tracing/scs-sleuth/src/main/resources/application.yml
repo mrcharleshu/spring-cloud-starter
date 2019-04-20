@@ -1,25 +1,31 @@
-spring:
-  profiles:
-    active: '@spring.profiles.active@'
-# https://cloud.spring.io/spring-cloud-sleuth/single/spring-cloud-sleuth.html#_features
-# 没有zipkin的依赖，不需要配置zipkin的参数，也不需要配置sampler
-#  zipkin:
-#    base-url: http://localhost:9411/
-#  sleuth:
-#    sampler:
-#      percentage: 1.0
-
+server:
+  context-path: /
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
     lease-renewal-interval-in-seconds: 30
+spring:
+  profiles:
+    active: '@spring.profiles.active@'
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        input_1:
+          destination: stream-topic-1
+        input_2:
+          destination: stream-topic-2
+        output_1:
+          destination: stream-topic-1
+        ouput_2:
+          destination: stream-topic-2
 logging:
   pattern:
     # console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] %clr(%logger{15}){cyan} - %msg%n'
     # console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}] %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%(%logger{15}<%method:%line>){40}){cyan} %clr(:){faint} %m%n'
-    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}] %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}.%M:%L){cyan} %clr(:){faint} %m%n'
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr([${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}]) %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}.%M:%L){cyan} %clr(:){faint} %m%n'
   level:
     com:
       charles:
@@ -28,3 +34,11 @@ logging:
       springframework:
         cloud:
           sleuth: INFO
+
+# https://cloud.spring.io/spring-cloud-sleuth/single/spring-cloud-sleuth.html#_features
+# 没有zipkin的依赖，不需要配置zipkin的参数，也不需要配置sampler
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  sleuth:
+#    sampler:
+#      percentage: 1.0

@@ -1,0 +1,32 @@
+server:
+  port: 28081
+logging:
+  level:
+    org:springframework.cloud.stream: DEBUG
+spring:
+  application:
+    name: scs-kafka-producer
+  kafka:
+    bootstrap-servers: localhost:9092 #kafka服务地址
+    consumer:
+      group-id: consumer1
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      client-id: producer1
+  cloud:
+    stream:
+      default-binder: kafka
+      bindings:
+        output1:
+          destination: test-topic
+          content-type: application/json
+          producer:
+            group: binder-group
+            sync: true
+        output2:
+          destination: TransactionTopic
+          content-type: application/json
+          producer:
+            transactional: true
+            group: myTxProducerGroup

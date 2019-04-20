@@ -27,6 +27,7 @@
         <module>scs-consumer-feign</module>
         <module>scs-api-gateway</module>
         <module>scs-tracing</module>
+        <module>scs-stream</module>
     </modules>
 
     <properties>

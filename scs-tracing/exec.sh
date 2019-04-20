@@ -30,15 +30,16 @@ svc=$1
 cmd=$2
 port=$3
 svc_dir=""
-svc_ports=()
+svc_ports=(8101 8102 8103 8104)
 if [ ${svc} == "sleuth" ]
 then
-    svc_dir="scs-sleuth-individual"
-    svc_ports=(9091 9092 9093 9094)
+    svc_dir="scs-sleuth"
 elif [ ${svc} == "zipkin" ]
 then
-    svc_dir="scs-zipkin-individual"
-    svc_ports=(9095 9096 9097 9098)
+    svc_dir="scs-zipkin"
+elif [ ${svc} == "skywalking" ]
+then
+    svc_dir="scs-skywalking"
 else
     echo "unknown service \"${svc}\""
 fi

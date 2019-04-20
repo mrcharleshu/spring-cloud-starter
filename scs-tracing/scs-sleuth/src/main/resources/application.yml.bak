@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        #配置自己定义的通道与哪个中间件交互
+        shop_input: #ShopChannel里Input和Output的值
+          destination: zhibo #目标主题
+        shop_output:
+          destination: zhibo
+      default-binder: kafka #默认的binder是kafka
+  kafka:
+    bootstrap-servers: localhost:9092 #kafka服务地址
+    consumer:
+      group-id: consumer1
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      client-id: producer1
