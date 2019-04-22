@@ -14,7 +14,9 @@
     <modules>
         <module>scs-tracing-base</module>
         <module>scs-skywalking</module>
-        <module>scs-sleuth</module>
+        <module>scs-sleuth-base</module>
+        <module>scs-sleuth-ribbon</module>
+        <module>scs-sleuth-httpclient</module>
         <module>scs-zipkin</module>
     </modules>
 

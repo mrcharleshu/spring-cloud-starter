@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.charles.springcloud</groupId>
+        <artifactId>scs-tracing-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>scs-sleuth-httpclient</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.charles.springcloud</groupId>
+            <artifactId>scs-sleuth-base</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>io.zipkin.brave</groupId>-->
+        <!--    <artifactId>brave-instrumentation-httpclient</artifactId>-->
+        <!--    <version>5.6.3</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.httpcomponents</groupId>-->
+        <!--    <artifactId>httpclient-cache</artifactId>-->
+        <!--    <version>4.5.8</version>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>service-1</id>
+            <properties>
+                <spring.profiles.active>service-1</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-2</id>
+            <properties>
+                <spring.profiles.active>service-2</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-3</id>
+            <properties>
+                <spring.profiles.active>service-3</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>service-4</id>
+            <properties>
+                <spring.profiles.active>service-4</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+</project>
