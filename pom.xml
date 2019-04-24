@@ -21,11 +21,11 @@
 
     <modules>
         <module>scs-eureka</module>
+        <module>scs-zuul</module>
         <module>scs-supplier-simple</module>
         <module>scs-data</module>
         <module>scs-consumer-ribbon</module>
         <module>scs-consumer-feign</module>
-        <module>scs-api-gateway</module>
         <module>scs-tracing</module>
         <module>scs-stream</module>
     </modules>

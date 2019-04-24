@@ -1,4 +1,4 @@
-package com.charles.springcloud;
+package com.charles.springcloud.zuul;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

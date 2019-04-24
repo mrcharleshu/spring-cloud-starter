@@ -1,4 +1,4 @@
-package com.charles.springcloud;
+package com.charles.springcloud.zuul;
 
 import org.springframework.stereotype.Component;
 

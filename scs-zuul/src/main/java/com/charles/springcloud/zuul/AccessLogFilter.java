@@ -1,4 +1,4 @@
-package com.charles.springcloud;
+package com.charles.springcloud.zuul;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

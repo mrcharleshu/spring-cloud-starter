@@ -11,9 +11,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-api-gateway</artifactId>
+    <artifactId>scs-zuul</artifactId>
     <packaging>jar</packaging>
-    <name>scs-api-gateway</name>
+    <name>scs-zuul</name>
     <description>Spring Cloud Starter API Gateway</description>
 
     <dependencies>
