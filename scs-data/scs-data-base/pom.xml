@@ -6,23 +6,18 @@
 
     <parent>
         <groupId>com.charles.springcloud</groupId>
-        <artifactId>scs-tracing-parent</artifactId>
+        <artifactId>scs-data-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>scs-sleuth-base</artifactId>
+    <artifactId>scs-data-base</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.charles.springcloud</groupId>
-            <artifactId>scs-tracing-base</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
         </dependency>
     </dependencies>
 

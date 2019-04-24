@@ -1,0 +1,13 @@
+server:
+  context-path: /
+  port: 9020
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: scs-data-elasticsearch
+  data:
+    elasticsearch:
+      cluster-nodes: localhost:9200

@@ -47,10 +47,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
         <!--https://github.com/apache/incubator-skywalking/blob/v3.2.6/docs/cn/Application-toolkit-logback-1.x-CN.md-->
         <dependency>
             <groupId>org.apache.skywalking</groupId>
