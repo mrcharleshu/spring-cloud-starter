@@ -1,5 +1,4 @@
 server:
-  context-path: /
   port: 9020
 eureka:
   client:
@@ -10,4 +9,5 @@ spring:
     name: scs-data-elasticsearch
   data:
     elasticsearch:
-      cluster-nodes: localhost:9200
+      clusterName: elasticsearch
+      clusterNodes: localhost:9300

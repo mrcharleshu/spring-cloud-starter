@@ -27,6 +27,7 @@ public class StartRunner implements CommandLineRunner, Ordered {
     public void run(String... args) throws Exception {
         // Remove all documents
         // conferenceRepository.deleteAll();
+        LOGGER.info("all records count: {}", conferenceRepository.count());
         insertSampleData();
         LOGGER.info("all records count: {}", conferenceRepository.count());
         insertSampleData();

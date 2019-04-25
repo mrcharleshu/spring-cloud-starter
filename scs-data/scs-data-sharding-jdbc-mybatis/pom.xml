@@ -8,7 +8,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>db-data-sharding-jdbc-mybatis</artifactId>
+    <artifactId>scs-data-sharding-jdbc-mybatis</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,6 +20,12 @@
             <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
             <version>${sharding-jdbc.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

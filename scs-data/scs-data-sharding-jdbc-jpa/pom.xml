@@ -8,7 +8,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>db-data-sharding-jdbc-jpa</artifactId>
+    <artifactId>scs-data-sharding-jdbc-jpa</artifactId>
 
     <dependencies>
         <dependency>

@@ -2,7 +2,7 @@ server:
   port: 9021
 spring:
   application:
-    name: db-query-sharding-jdbc-jpa
+    name: scs-data-sharding-jdbc-jpa
   profiles:
     active: sharding-masterslave
   jpa:

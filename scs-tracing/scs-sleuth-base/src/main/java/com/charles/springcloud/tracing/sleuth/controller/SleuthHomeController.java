@@ -6,6 +6,7 @@ import com.charles.springcloud.tracing.constants.ServiceNames;
 import com.charles.springcloud.tracing.service.RemoteService;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionTracer;
+import com.charles.springcloud.tracing.sleuth.event.PublishEventService;
 import com.charles.springcloud.tracing.sleuth.service.SimpleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +29,15 @@ public class SleuthHomeController implements ServiceNames {
     private final Tracer tracer;
     private final SimpleService simpleService;
     private final RemoteService remoteService;
+    private final PublishEventService publishEventService;
 
     @Autowired
-    public SleuthHomeController(Tracer tracer, SimpleService simpleService, RemoteService remoteService) {
+    public SleuthHomeController(Tracer tracer, SimpleService simpleService,
+            RemoteService remoteService, PublishEventService publishEventService) {
         this.tracer = tracer;
         this.simpleService = simpleService;
         this.remoteService = remoteService;
+        this.publishEventService = publishEventService;
     }
 
     private String getBaggageValue() {
@@ -58,6 +62,8 @@ public class SleuthHomeController implements ServiceNames {
         simpleService.testAsync1();
         simpleService.testAsync2();
         simpleService.testAsync3();
+        publishEventService.testSimpleEvent();
+        publishEventService.testEventWithReturnValue();
         String response = remoteService.callService2();
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }
