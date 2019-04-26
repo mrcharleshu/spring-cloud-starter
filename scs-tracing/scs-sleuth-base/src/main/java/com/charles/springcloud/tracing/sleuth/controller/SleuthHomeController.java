@@ -68,8 +68,7 @@ public class SleuthHomeController implements ServiceNames {
         simpleService.testAsync3();
         publishEventService.testSimpleEvent();
         publishEventService.testEventWithReturnValue();
-        // String response = remoteService.callService2();
-        String response = "";
+        String response = remoteService.callService2();
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }
 
@@ -86,7 +85,6 @@ public class SleuthHomeController implements ServiceNames {
     public String foo() throws InterruptedException {
         LOGGER.info("foo");
         int sleep = sleep();
-        // String response3 = "fake service3 call";
         // remoteService.callService3Async();
         String response3 = remoteService.callService3();
         String response4 = remoteService.callService4();
