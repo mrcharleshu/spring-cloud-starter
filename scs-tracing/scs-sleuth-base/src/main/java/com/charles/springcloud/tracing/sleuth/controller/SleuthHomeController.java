@@ -7,6 +7,7 @@ import com.charles.springcloud.tracing.service.RemoteService;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionStepTracer;
 import com.charles.springcloud.tracing.sleuth.annotation.LogActionTracer;
 import com.charles.springcloud.tracing.sleuth.event.PublishEventService;
+import com.charles.springcloud.tracing.sleuth.factory.FactoryBeanService;
 import com.charles.springcloud.tracing.sleuth.service.SimpleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -30,14 +30,17 @@ public class SleuthHomeController implements ServiceNames {
     private final SimpleService simpleService;
     private final RemoteService remoteService;
     private final PublishEventService publishEventService;
+    private final FactoryBeanService factoryBeanService;
 
     @Autowired
     public SleuthHomeController(Tracer tracer, SimpleService simpleService,
-            RemoteService remoteService, PublishEventService publishEventService) {
+            RemoteService remoteService, PublishEventService publishEventService,
+            FactoryBeanService factoryBeanService) {
         this.tracer = tracer;
         this.simpleService = simpleService;
         this.remoteService = remoteService;
         this.publishEventService = publishEventService;
+        this.factoryBeanService = factoryBeanService;
     }
 
     private String getBaggageValue() {
@@ -54,17 +57,19 @@ public class SleuthHomeController implements ServiceNames {
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")
     @GetMapping("start")
-    public String start() throws InterruptedException, ExecutionException {
+    public String start() throws Exception {
         LOGGER.info("start");
         int sleep = sleep();
         simpleService.testNewSpanMethod("testTagValue");
         // simpleService.testParallelStream();
+        factoryBeanService.test();
         simpleService.testAsync1();
         simpleService.testAsync2();
         simpleService.testAsync3();
         publishEventService.testSimpleEvent();
         publishEventService.testEventWithReturnValue();
-        String response = remoteService.callService2();
+        // String response = remoteService.callService2();
+        String response = "";
         return String.format(" [%s (%s) sleep %s ms]", SERVICE_1, getBaggageValue(), sleep) + response;
     }
 

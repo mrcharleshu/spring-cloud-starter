@@ -1,17 +1,15 @@
 package com.charles.springcloud.tracing.sleuth.event.po;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.event.ApplicationContextEvent;
+import org.springframework.context.ApplicationEvent;
 
-public class IntegerEvent extends ApplicationContextEvent {
+public class IntegerEvent extends ApplicationEvent {
     private Integer value;
 
     /**
-     * Create a new ContextStartedEvent.
-     * @param source the {@code ApplicationContext} that the event is raised for
-     *               (must not be {@code null})
+     * Create a new ApplicationEvent.
+     * @param source the object on which the event initially occurred (never {@code null})
      */
-    public IntegerEvent(ApplicationContext source) {
+    public IntegerEvent(Object source) {
         super(source);
     }
 

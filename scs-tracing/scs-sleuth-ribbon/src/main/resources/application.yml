@@ -29,7 +29,7 @@ logging:
   level:
     com:
       charles:
-        sleuth: DEBUG
+        springcloud: DEBUG
     org:
       springframework:
         cloud:
