@@ -61,7 +61,7 @@ public class SleuthHomeController implements ServiceNames {
         LOGGER.info("start");
         int sleep = sleep();
         simpleService.testNewSpanMethod("testTagValue");
-        // simpleService.testParallelStream();
+        simpleService.testParallelStream();
         factoryBeanService.test();
         simpleService.testAsync1();
         simpleService.testAsync2();
