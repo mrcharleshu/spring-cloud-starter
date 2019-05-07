@@ -1,9 +1,9 @@
-### SpringCloudPractice
-- scs-eureka:服务注册中心
-- scs-supplier-one:服务提供者1
-- scs-supplier-two:服务提供者2
-- scs-consumer-ribbon:服务消费者-Ribbon
-- scs-consumer-feign:服务消费者-Feign
+### Spring Cloud Starter
+- `scs-eureka`:服务注册中心
+- `scs-zuul`:服务网关
+- `scs-data`:集成spring-data标准的服务
+- `scs-stream`:MQ的标准化后的流处理
+- `scs-tracing`:服务跟踪
 
 ### 服务之间调用
 目前，在Spring cloud 中服务之间通过restful方式调用有两种方式，从实践上看，采用feign的方式更优雅（feign内部也使用了ribbon做负载均衡）。 
@@ -30,9 +30,9 @@
 ### 各个服务端口分配
 |服务|端口范围|
 |:--------|:--------|
-|api-gateway|8080|
-|eureka-cluster|8081~8083|
-|scs-data-db|9020~9023|
-|scs-supplier-simple|8091~8096|
+|api-zuul|8080|
+|scs-eureka|8081~8083|
+|scs-data|9020~9023|
+|scs-tracing|8101~8104|
 |scs-consumer-ribbon|9001~9003|
 |scs-consumer-feign|9010~9012|
