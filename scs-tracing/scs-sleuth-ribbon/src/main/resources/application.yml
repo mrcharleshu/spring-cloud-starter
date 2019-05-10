@@ -1,5 +1,6 @@
 server:
-  context-path: /
+  servlet:
+    context-path: /
 eureka:
   client:
     serviceUrl:
@@ -25,7 +26,7 @@ logging:
   pattern:
     # console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] %clr(%logger{15}){cyan} - %msg%n'
     # console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) [${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}] %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%(%logger{15}<%method:%line>){40}){cyan} %clr(:){faint} %m%n'
-    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}]) %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}.%M:%L){cyan} %clr(:){faint} %m%n'
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{action:-},%X{step:-}]) %clr(${PID:-}){magenta} %clr([%15.15t]){faint} %clr(%logger{36}#%M:%L){cyan} %clr(:){faint} %m%n'
   level:
     com:
       charles:

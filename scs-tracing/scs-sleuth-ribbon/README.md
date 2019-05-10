@@ -17,7 +17,7 @@ ps -ef | grep run.sh | awk '{print $2}' | xargs kill -9
 ## Ribbon中的ServerList实现类注意
 ### 有两个注意的类可以实现ServerList接口，分别是
 - DomainExtractingServerList
-- ConfigurationBasedServerList
+- ConfigurationBasedServerList（基于配置的服务列表实例）
 
 ### 实例化入口
 `RibbonClientConfiguration`实例化的是`ConfigurationBasedServerList`
