@@ -3,12 +3,13 @@ package com.charles.springcloud.data.elasticsearch;
 import com.charles.springcloud.data.elasticsearch.document.Conference;
 import com.charles.springcloud.data.elasticsearch.document.LogTracer;
 import com.charles.springcloud.data.elasticsearch.repository.ConferenceRepository;
-import com.charles.springcloud.data.elasticsearch.repository.LogTracerRepository;
+import com.charles.springcloud.data.elasticsearch.service.LogTracerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
+import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 import org.springframework.stereotype.Component;
@@ -21,14 +22,14 @@ public class StartRunner implements CommandLineRunner, Ordered {
     private static final Logger LOGGER = LoggerFactory.getLogger(StartRunner.class);
     private final ElasticsearchOperations operations;
     private final ConferenceRepository conferenceRepository;
-    private final LogTracerRepository logTracerRepository;
+    private final LogTracerService logTracerService;
 
     @Autowired
     public StartRunner(ElasticsearchOperations operations,
-            ConferenceRepository conferenceRepository, LogTracerRepository logTracerRepository) {
+            ConferenceRepository conferenceRepository, LogTracerService logTracerService) {
         this.operations = operations;
         this.conferenceRepository = conferenceRepository;
-        this.logTracerRepository = logTracerRepository;
+        this.logTracerService = logTracerService;
     }
 
     @Override
@@ -38,12 +39,15 @@ public class StartRunner implements CommandLineRunner, Ordered {
     }
 
     private void runLogTracer() {
-        LOGGER.info("all records count: {}", logTracerRepository.count());
+        LOGGER.info("all records count: {}", logTracerService.count());
         // Iterable<LogTracer> logTracers = logTracerRepository.findAll();
-        List<LogTracer> logTracers = logTracerRepository.findByBusinessNo("A000048");
-        for (LogTracer logTracer : logTracers) {
-            System.out.println(logTracer);
-        }
+        LOGGER.info("find by condition");
+        List<LogTracer> logTracers = logTracerService.findByBusinessNo("A000044");
+        logTracers.forEach(System.out::println);
+        LOGGER.info("find by page request");
+        Page<LogTracer> page = logTracerService.search("A000056");
+        LOGGER.info("after paging query, result = {}", page.toString());
+        page.forEach(System.out::println);
     }
 
     private void runConference() {

@@ -16,7 +16,7 @@ import java.time.LocalTime;
 
 @Data
 @Builder
-@Document(indexName = "log-tracer-2019.05.09", type = "doc", shards = 5, replicas = 1)
+@Document(indexName = "log-tracer-*", type = "doc", shards = 5, replicas = 1)
 public class LogTracer {
     @Id
     private String id;
