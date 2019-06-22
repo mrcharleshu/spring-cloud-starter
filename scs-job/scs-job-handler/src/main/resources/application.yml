@@ -1,0 +1,26 @@
+# web port
+server:
+  port: 8081
+
+  # log config
+logging:
+  config: classpath:logback.xml
+
+  ### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+xxl:
+  job:
+    admin-addresses: http://127.0.0.1:8080/xxl-job-admin
+    ### xxl-job executor address
+    executor-app-name: xxl-job-executor-sample
+    executor-ip: 127.0.0.1
+    executor-port: 9998
+    executor-log-path: /opt/data/applogs/xxl-job/jobhandler
+    log-retention-days: -1
+
+  ### xxl-job, access token
+  #    accessToken:
+
+  ### xxl-job log path
+  #  xxl:job:executor:
+  ### xxl-job log retention days
+#  xxl:job:executor:

@@ -28,6 +28,7 @@
         <module>scs-consumer-feign</module>
         <module>scs-tracing</module>
         <module>scs-stream</module>
+        <module>scs-job</module>
     </modules>
 
     <properties>
