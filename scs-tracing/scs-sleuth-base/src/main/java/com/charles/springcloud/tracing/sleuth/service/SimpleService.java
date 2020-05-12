@@ -15,5 +15,7 @@ public interface SimpleService {
 
     void testAsync3() throws ExecutionException, InterruptedException;
 
+    void testAsync4() throws ExecutionException, InterruptedException;
+
     void testParallelStream() throws InterruptedException;
 }

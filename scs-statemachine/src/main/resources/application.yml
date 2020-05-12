@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: scs-statemachine
+logging:
+  path: logs
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5level) %clr(%logger{15}){cyan} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{15} - %msg%n'
+  level:
+    org:
+      springframework:
+        boot: WARN

@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -65,6 +66,14 @@ public class SimpleServiceImpl implements SimpleService {
         LOGGER.info("--> " + result1.get());
         LOGGER.info("--> " + result2.get());
         LOGGER.info("--> " + result3.get());
+    }
+
+    @Async
+    @Override
+    public void testAsync4() throws ExecutionException, InterruptedException {
+        LOGGER.info("before sleep timestamp = {}", LocalDateTime.now());
+        Thread.sleep(3000);
+        LOGGER.info("after sleep timestamp = {}", LocalDateTime.now());
     }
 
     @LogActionStepTracer(step = "testParallelStream")

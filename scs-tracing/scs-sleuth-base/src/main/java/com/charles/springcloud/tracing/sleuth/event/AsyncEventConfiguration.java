@@ -1,7 +1,7 @@
 package com.charles.springcloud.tracing.sleuth.event;
 
-import com.charles.springcloud.tracing.sleuth.AsyncThreadConfig;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.cloud.sleuth.instrument.async.LazyTraceExecutor;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +24,9 @@ public class AsyncEventConfiguration {
 
     @Bean
     public ApplicationEventMulticaster applicationEventMulticaster(
-            BeanFactory beanFactory, AsyncThreadConfig asyncThreadConfig) {
+            BeanFactory beanFactory, LazyTraceExecutor executor) {
         SimpleApplicationEventMulticaster multicaster = new SimpleApplicationEventMulticaster(beanFactory);
-        multicaster.setTaskExecutor(asyncThreadConfig.getAsyncExecutor());
+        multicaster.setTaskExecutor(executor);
         return multicaster;
     }
 }

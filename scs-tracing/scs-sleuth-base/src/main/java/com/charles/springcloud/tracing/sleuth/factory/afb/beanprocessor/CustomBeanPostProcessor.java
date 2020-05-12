@@ -9,12 +9,12 @@ public class CustomBeanPostProcessor implements BeanPostProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomBeanPostProcessor.class);
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        LOGGER.info("Called postProcessBeforeInitialization() for :" + beanName);
+        LOGGER.debug("Called postProcessBeforeInitialization() for :" + beanName);
         return bean;
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        LOGGER.info("Called postProcessAfterInitialization() for :" + beanName);
+        LOGGER.debug("Called postProcessAfterInitialization() for :" + beanName);
         return bean;
     }
 }

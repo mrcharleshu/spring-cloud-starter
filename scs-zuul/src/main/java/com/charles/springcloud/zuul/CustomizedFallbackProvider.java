@@ -15,6 +15,16 @@ public abstract class CustomizedFallbackProvider implements FallbackProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomizedFallbackProvider.class);
 
     @Override
+    public String getRoute() {
+        return null;
+    }
+
+    @Override
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+        return null;
+    }
+
+    // @Override
     public ClientHttpResponse fallbackResponse() {
         return new ClientHttpResponse() {
             @Override
@@ -51,7 +61,7 @@ public abstract class CustomizedFallbackProvider implements FallbackProvider {
         };
     }
 
-    @Override
+    // @Override
     public ClientHttpResponse fallbackResponse(Throwable throwable) {
         // LOGGER.info("route = {}", route);
         Throwable cause = throwable.getCause();

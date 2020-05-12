@@ -53,6 +53,13 @@ public class SleuthHomeController implements ServiceNames {
         return sleep;
     }
 
+    @GetMapping("test")
+    public String test() throws Exception {
+        // simpleService.testAsync4();
+        publishEventService.testEventWithReturnValue();
+        return "ok";
+    }
+
     @LogApiCall(action = SERVICE_1)
     @LogActionTracer(action = XIAO_XIANG, continued = true)
     @LogActionStepTracer(step = "mainMethod")

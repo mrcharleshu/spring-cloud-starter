@@ -15,7 +15,7 @@ public class IntegerEventListener implements ApplicationListener<IntegerEvent> {
     @Override
     public void onApplicationEvent(IntegerEvent event) {
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             LOGGER.error(e.getMessage());
         }
