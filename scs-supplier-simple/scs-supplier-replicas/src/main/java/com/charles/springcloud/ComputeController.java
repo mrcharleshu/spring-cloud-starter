@@ -18,7 +18,7 @@ public class ComputeController {
 
     @RequestMapping(value = "/sayHello", method = RequestMethod.GET)
     public String sayHello(@RequestParam String name) {
-        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        ServiceInstance instance = discoveryClient.getInstances("scs-supplier-replicas").get(0);
         String r = "hello," + name;
         LOGGER.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
         return r;

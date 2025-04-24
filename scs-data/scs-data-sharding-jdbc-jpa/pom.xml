@@ -4,8 +4,7 @@
     <parent>
         <groupId>com.charles.springcloud</groupId>
         <artifactId>scs-data-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>scs-data-sharding-jdbc-jpa</artifactId>
@@ -14,7 +13,7 @@
         <dependency>
             <groupId>com.charles.springcloud</groupId>
             <artifactId>scs-data-base</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -24,6 +23,10 @@
             <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
             <version>${sharding-jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -10,8 +10,8 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8081/eureka/
-turbine:
-  app-config: say-hello,scs-consumer-feign,scs-consumer-ribbon
-  cluster-name-expression: "'default'"
+      defaultZone: http://master:8081/eureka/
+#turbine:
+#  app-config: say-hello,scs-consumer-feign,scs-consumer-ribbon
+#  cluster-name-expression: "'default'"
   #instanceUrlSuffix: /say-hello/hystrix.stream

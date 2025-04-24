@@ -28,3 +28,6 @@ pi-web/bin/
 
 ### Mac ###
 .DS_Store
+
+# Maven ignore
+.flattened-pom.xml

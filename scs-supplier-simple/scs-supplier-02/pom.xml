@@ -7,9 +7,15 @@
     <parent>
         <groupId>com.charles.springcloud</groupId>
         <artifactId>supplier-simple-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>scs-supplier-02</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
 </project>

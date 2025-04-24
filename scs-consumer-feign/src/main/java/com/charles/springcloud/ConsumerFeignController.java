@@ -1,23 +1,21 @@
 package com.charles.springcloud;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RequestMapping("/api/feign")
 @RestController
 public class ConsumerFeignController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerFeignController.class);
     @Autowired
     public FeignClientService feignClientService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @GetMapping("/hello")
     public String sayHello() {
-        LOGGER.info("Request helloFeign......");
+        log.info("Request helloFeign......");
         return feignClientService.sayHello("request_from_feign");
     }
-
 }

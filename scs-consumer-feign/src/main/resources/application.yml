@@ -4,6 +4,10 @@ management:
   security:
     enabled: false
   context-path: /
+  endpoints:
+    web:
+      exposure:
+        include: info,health,beans,prometheus,service-registry,hystrix.stream
 spring:
   application:
     name: scs-consumer-feign

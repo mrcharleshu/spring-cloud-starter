@@ -7,8 +7,7 @@
     <parent>
         <groupId>com.charles.springcloud</groupId>
         <artifactId>scs-data-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>scs-data-hateoas</artifactId>
@@ -18,7 +17,7 @@
         <dependency>
             <groupId>com.charles.springcloud</groupId>
             <artifactId>scs-data-base</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -4,15 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.charles</groupId>
-    <artifactId>scs-admin-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.charles.springcloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>${revision}</version>
     </parent>
+
+    <artifactId>scs-admin-server</artifactId>
 
     <properties>
         <de.codecentric.version>1.5.7</de.codecentric.version>
@@ -27,10 +25,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.springframework.cloud</groupId>-->
+        <!--    <artifactId>spring-cloud-starter-eureka-</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-ribbon</artifactId>

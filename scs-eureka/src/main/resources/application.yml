@@ -1,6 +1,6 @@
 # 注册服务的端口号
 server:
-  port: 8761
+  port: 8081
 # 应用名称，集群名称需要一致
 spring:
   application:

@@ -3,21 +3,20 @@ package com.charles.springcloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 
-@SpringBootApplication
+
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker
 //@SpringCloudApplication
 //@EnableFeignClients
-@EnableHystrix
 @EnableHystrixDashboard
+@EnableHystrix
 @EnableTurbine
-@ComponentScan("com.charles.springcloud")
-public class Application {
+@SpringBootApplication(scanBasePackages = "com.charles.springcloud")
+public class HystrixMonitorApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(HystrixMonitorApplication.class, args);
     }
 }

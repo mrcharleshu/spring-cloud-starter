@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,6 +20,9 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
@@ -39,52 +45,4 @@ public class User implements Serializable {
     private String name;
     private Integer age;
     private String address;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(final LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(final LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(final Integer age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
-    }
 }

@@ -1,22 +1,21 @@
 package com.charles.springcloud;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RequestMapping("/api/ribbon")
 @RestController
 public class ConsumerRibbonController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerRibbonController.class);
     @Autowired
     public RibbonClientService ribbonClientService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @GetMapping("/hello")
     public String sayHello() {
-        LOGGER.info("Request helloRibbon......");
+        log.info("Request helloRibbon......");
         return ribbonClientService.sayHello();
     }
 }

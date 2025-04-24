@@ -1,0 +1,14 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: say-hello
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://master:8081/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,beans,prometheus,service-registry,hystrix.stream
